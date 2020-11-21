@@ -1,16 +1,18 @@
 {
-  "name": "learn-starter",
+  "name": "apoupart-portfolio",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "export": "next export -o dist",
-    "deploy": "next build & next export",
+    "export": "next export",
+    "deploy": "next build && next export",
+    "postbuild": "next-on-netlify",
     "start": "next start"
   },
   "dependencies": {
     "next": "^10.0.0",
+    "next-on-netlify": "^2.6.3",
     "react": "16.13.1",
     "react-dom": "16.13.1"
   },

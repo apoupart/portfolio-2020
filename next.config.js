@@ -1,4 +1,5 @@
 module.exports = {
   trailingSlash: true,
-  assetPrefix: './'
+  assetPrefix: './',
+  target: "serverless",
 };
