@@ -1,0 +1,92 @@
+@import "../../assets/scss/variable";
+@import "../../assets/scss/mixins";
+@import "../../assets/scss/function";
+
+.header {
+  width: 100%;
+  height: 100vh;
+  display: block;
+  color: $white;
+
+  &__content {
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-width: calculateRem($contentWidth);
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  &__title {
+    position: absolute;
+    top: 25%;
+    @include font-size(48px);
+    @include line-height(66px);
+    width: 75%;
+    text-shadow: 0px 0px 8px rgba($color: $black, $alpha: 0.6);
+    animation: fadeIn 3s;
+    strong {
+      color: $lighBlue;
+    }
+  }
+
+  &__background {
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    &::before {
+      content: "";
+      font-size: 20px;
+      top: 0px;
+      left: 0px;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      background-image: url(../../assets/images/textureSlider.png);
+      mix-blend-mode: multiply;
+    }
+  }
+
+  &__icon-down {
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    width: 40px;
+    transform: translate(-50%, 0);
+    animation-iteration-count: infinite;
+    animation-fill-mode: both;
+    animation-duration: 2s;
+    animation-name: bounce;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    left: -80px;
+  }
+  100% {
+    opacity: 1;
+    left: 0;
+  }
+}
+
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-25px);
+  }
+  60% {
+    transform: translateY(-10px);
+  }
+}
