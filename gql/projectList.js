@@ -1,8 +1,12 @@
 import gql from "graphql-tag";
 
 export const PROJECT_LISTS = gql`
-query projectList {
+  query projectList {
     projects {
+      image {
+        url
+        id
+      }
       id
       title
       description

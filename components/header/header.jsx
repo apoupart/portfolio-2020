@@ -12,9 +12,12 @@ const Header = () => {
   return (
     <header className={style['header']}>
       <div className={style["header__content"]}>
-        <h1 className={style['header__title']}>
-          <ReactMarkdown>{data.content.catch_phrase}</ReactMarkdown>
-        </h1>
+          <div className={style["header__title-section"]}>
+            <h1 className={style['header__title']}>
+                Alexandre Poupart
+            </h1>
+            <h2 className={style['header__subtitle']}>Développeur Front-End <span>//</span> Full Stack</h2>
+          </div>
         <FontAwesomeIcon
           className={style["header__icon-down"]}
           icon={faAngleDown}

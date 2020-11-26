@@ -13,7 +13,7 @@ class MyApp extends App {
         <Head>
           <link rel="preconnect" href="https://fonts.gstatic.com" />
           <link
-            href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,300;0,400;0,700;1,500&display=swap"
             rel="stylesheet"
           />
         </Head>
@@ -146,10 +146,10 @@ class MyApp extends App {
               border-spacing: 0;
             }
             html {
-              font-family: "Noto Sans", sans-serif;
+              font-family: 'Work Sans', sans-serif;
             }
             strong {
-                font-weight: bold;
+              font-weight: bold;
             }
           `}</style>
         </>
