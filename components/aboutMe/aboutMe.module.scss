@@ -1,0 +1,86 @@
+@import "../../assets/scss/variable";
+@import "../../assets/scss/mixins";
+@import "../../assets/scss/function";
+
+.about-me {
+    min-height: 100vh;
+    display: block;
+    background-color: $darkBlue;
+    padding: 80px 0;
+    &__wrapper {
+        display: block;
+        margin: 0 auto;
+        padding-top: 60px;
+        padding-bottom: 40px;
+        max-width: calculateRem($contentWidth);
+        position: relative;
+        overflow: hidden;
+        font-size: 20px;
+        line-height: 1.5;
+        box-sizing: border-box;
+        padding: 40px 60px;
+        border-radius: 20px;
+        border: 2px solid $white;
+    }
+
+    &__dots {
+        left: -8px;
+        top: -8px;
+        width: 12px;
+        height: 12px;
+        border-radius: 100%;
+        border: 2px solid $white;
+        position: relative;
+        box-sizing: border-box;
+        margin-bottom: 20px;
+        transition: background 250ms ease-in;
+        cursor: pointer;
+        &:hover {
+            background-color: $lightGray;
+            &::before,
+            &::after {
+                background-color: $lightGray;
+            }
+        }
+        &::after,
+        &::before {
+            content: "";
+            font-size: 20rem;
+            width: 12px;
+            height: 12px;
+            position: absolute;
+            top: -2px;
+            left: -20px;
+            border-radius: 100%;
+            border: 2px solid $white;
+            box-sizing: border-box;
+            transition: background 250ms ease-in;
+        }
+        &::after {
+            left: 16px;
+        }
+    }
+
+    &__content {
+        padding-left: 60px;
+        max-width: 960px;
+        color: $white;
+        p {
+            padding-bottom: 30px;
+        }
+        strong {
+            color: $blue;
+            font-weight: normal;
+        }
+        em {
+            color: $lightRed;
+        }
+    }
+
+    &__sideline {
+        text-align: right;
+        opacity: 0.6;
+        position: absolute;
+        color: $lightGray;
+    }
+}

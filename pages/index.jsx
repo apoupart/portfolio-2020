@@ -1,9 +1,16 @@
 import Head from "next/head";
 import Link from "next/link";
-import Header from "../components/header/header";
+import AboutMeComponent from "../components/aboutMe/aboutMe";
+import HeaderComponent from "../components/header/header";
 import ProjectListComponent from "../sections/ProjectListComponent";
+import { useQuery } from "@apollo/react-hooks";
+import { HEADING } from "../gql/headerContent";
 
 const Home = () => {
+  const { loading, error, data } = useQuery(HEADING);
+  if (error) return <h1>Error with header component</h1>;
+  if (loading) return <h1>Loading the heading...</h1>;
+
   const MyButton = React.forwardRef(({ onClick, href }, ref) => {
     return (
       <a href={href} onClick={onClick} ref={ref}>
@@ -18,7 +25,8 @@ const Home = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-<Header/>
+      <HeaderComponent bannerUrl={data.content.banner.url} />
+      <AboutMeComponent catch_phrase={data.content.catch_phrase} />
       <main>
         <h1 className="title">
           Welcome to <a href="https://nextjs.org">Next.js!</a>

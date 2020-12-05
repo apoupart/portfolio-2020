@@ -4,17 +4,14 @@ import style from "./ProjectCard.module.scss";
 
 const ProjectCard = ({ project }) => {
   return (
-    <>
-      <div
-        className={style["project-card"]}
-        style={{
-          backgroundImage: `url(${project.image[0].url})`,
-        }}
-      >
-        --{project.title}--
-      </div>
-      ;
-    </>
+    <div
+      className={style["project-card"]}
+      style={{
+        backgroundImage: `url(${project.image[0].url})`,
+      }}
+    >
+      --{project.title}--
+    </div>
   );
 };
 

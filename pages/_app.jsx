@@ -13,7 +13,7 @@ class MyApp extends App {
         <Head>
           <link rel="preconnect" href="https://fonts.gstatic.com" />
           <link
-            href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,300;0,400;0,700;1,500&display=swap"
+            href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;600&display=swap"
             rel="stylesheet"
           />
         </Head>
@@ -108,6 +108,7 @@ class MyApp extends App {
               font-size: 100%;
               font: inherit;
               vertical-align: baseline;
+              box-sizing: border-box;
             }
             /* HTML5 display-role reset for older browsers */
             article,
@@ -146,7 +147,7 @@ class MyApp extends App {
               border-spacing: 0;
             }
             html {
-              font-family: 'Work Sans', sans-serif;
+              font-family: "IBM Plex Mono", monospace;
             }
             strong {
               font-weight: bold;
