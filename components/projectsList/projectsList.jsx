@@ -6,27 +6,24 @@ import { PROJECT_FILTERED } from "../../gql/projectFiltered";
 import ProjectCard from "../projectCard/projectCard";
 import { useState } from "react";
 import TechnologiesListComponent from "../technologiesList/technologiesList";
+import style from "./projectsList.module.scss"
 
 const ProjectListComponent = ({ slug }) => {
   const { loading, error, data, refetch } = useQuery(PROJECT_FILTERED, {
-    variables: { slug: slug },
+    variables: { slug: slug || undefined },
   });
   if (error) return <h1>-Error loading data on projectLists Component</h1>;
   if (loading) return <h1>Loading via projectLists...</h1>;
 
   return (
     <>
-      {data.projects.map((data) => (
-        <ul key={data.id}>
-          <li>
-            <Link href={`/projets/${encodeURIComponent(data.slug)}`}>
-              <>
-                <ProjectCard project={data} />
-              </>
-            </Link>
+      <ul className={style["projects-list"]}>
+        {data.projects.map((data) => (
+          <li className={style["projects-list__item"]} key={data.id}>
+            <ProjectCard project={data} />
           </li>
-        </ul>
-      ))}
+        ))}
+      </ul>
     </>
   );
 };

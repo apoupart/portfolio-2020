@@ -1,0 +1,25 @@
+.project-card {
+    position: relative;
+    min-width: 12rem;
+    cursor: pointer;
+    overflow: hidden;
+    &__padding {
+        width: 100%;
+        display: block;
+        padding-bottom: 60%;
+    }
+    &__wrapper {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+    &__image {
+        width: 105%;
+        top: 50%;
+        left: 50%;
+        position: absolute;
+        transform: translate(-50%, -50%);
+    }
+}

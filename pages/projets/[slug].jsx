@@ -1,3 +1,6 @@
+import { PROJECT_LISTS } from "../../gql/projectList";
+import { useQuery } from "@apollo/react-hooks";
+
 // const singleProject = () => {};
 
 // export async function getStaticPaths() {
@@ -18,12 +21,18 @@
 import { useRouter } from "next/router";
 
 export async function getStaticPaths() {
+  const res = await fetch("http://localhost:1337/projects")
+  const posts = await res.json()
+
+
+  // Get the paths we want to pre-render based on posts
+  const paths = posts.map((post) => ({
+    params: { id: post.id, slug: post.slug },
+  }));
+  console.log('---posts', paths);
   return {
-    paths: [
-      { params: { slug: "plus-immobilier-2016" } },
-      { params: { slug: "chalet-et-motel" } },
-    ],
-    fallback: false, // fallback is set to false because we already know the slugs ahead of time
+    paths,
+    fallback: true, // fallback is set to false because we already know the slugs ahead of time
   };
   //   const paths = getAllPostIds();
   //   return {

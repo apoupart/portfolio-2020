@@ -1,7 +1,7 @@
 import { useQuery } from "@apollo/react-hooks";
 import { PROJECT_LISTS } from "../gql/projectList";
-import ProjectListComponent from "../sections/ProjectListComponent";
+import ProjectsSectionComponent from "../sections/projectSection";
 
-const ProjectsPage = () => <ProjectListComponent />;
+const ProjectsPage = () => <ProjectsSectionComponent />;
 
 export default ProjectsPage;
