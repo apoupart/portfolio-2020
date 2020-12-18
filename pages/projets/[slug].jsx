@@ -32,7 +32,7 @@ export async function getStaticPaths() {
   console.log('---posts', paths);
   return {
     paths,
-    fallback: true, // fallback is set to false because we already know the slugs ahead of time
+    fallback: false, // fallback is set to false because we already know the slugs ahead of time
   };
   //   const paths = getAllPostIds();
   //   return {
