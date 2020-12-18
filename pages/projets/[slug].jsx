@@ -21,7 +21,7 @@ import { useQuery } from "@apollo/react-hooks";
 import { useRouter } from "next/router";
 
 export async function getStaticPaths() {
-  const res = await fetch("http://localhost:1337/projects")
+  const res = await fetch(`${process.env.NEXT_PUBLIC_GRAPHQL_URL}/projects`)
   const posts = await res.json()
 
 
