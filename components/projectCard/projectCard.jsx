@@ -1,6 +1,6 @@
 import Link from "next/link";
 import PropTypes from "prop-types";
-import style from "./ProjectCard.module.scss";
+import style from "./projectCard.module.scss";
 
 const ProjectCard = ({ project }) => {
   return (
