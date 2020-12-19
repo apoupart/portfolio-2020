@@ -14,6 +14,7 @@ export const PROJECT_FILTERED = gql`
       technologies {
         id
         name
+        slug
       }
     }
   }

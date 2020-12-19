@@ -6,7 +6,8 @@ const ProjectCard = ({ project }) => {
   return (
     <Link href={`/projets/${encodeURIComponent(project.slug)}`}>
       <div
-        className={style["project-card"]}
+        className={[style['project-card'], style[`project-card--tech-${project.slug}`]].join(' ')}
+        data-technology={project.technologies[0].slug}
       >
         <div className={style["project-card__padding"]}></div>
         <img className={style["project-card__image"]} src={project.image[0].url} loading="lazy" aria-hidden="true" />
@@ -22,7 +23,8 @@ ProjectCard.propTypes = {
   project: PropTypes.shape({
     title: PropTypes.string.isRequired,
     slug: PropTypes.string.isRequired,
-    image: PropTypes.array
+    image: PropTypes.array,
+    technologies: PropTypes.array
   }).isRequired,
 };
 
