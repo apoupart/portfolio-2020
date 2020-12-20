@@ -1,22 +1,21 @@
 import { useQuery } from "@apollo/react-hooks";
+import style from "./technologiesList.module.scss";
+import TechnologyButtonComponent from "../technologyButton/technologyButton";
 import { TECHNOLOGIES } from "../../gql/technologies";
 
-const TechnologiesListComponent = ({onClickEvent}) => {
+const TechnologiesListComponent = ({ onClickEvent, selectedTechnology }) => {
   const { loading, error, data } = useQuery(TECHNOLOGIES);
   if (error) return <h1>Error</h1>;
   if (loading) return <h1>Loading via TechnologiesLists...</h1>;
   return (
     <>
-      tech--
-      {data.technologies.map((data) => (
-        <ul key={data.id}>
-          <li>
-            <button onClick={() => onClickEvent(data.slug)}>
-              {data.name}
-            </button>
+      <ul className={style["technologies-list"]}>
+        {data.technologies.map((data) => (
+          <li key={data.id}>
+            <TechnologyButtonComponent technology={data} onClickEvent={onClickEvent} selectedTechnology={selectedTechnology} />
           </li>
-        </ul>
-      ))}
+        ))}
+      </ul>
     </>
   );
 };

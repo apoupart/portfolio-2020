@@ -2,7 +2,7 @@ import Link from "next/link";
 import PropTypes from "prop-types";
 import style from "./projectCard.module.scss";
 
-const ProjectCard = ({ project }) => {
+const ProjectCardComponent = ({ project }) => {
   return (
     <Link href={`/projets/${encodeURIComponent(project.slug)}`}>
       <div
@@ -19,7 +19,7 @@ const ProjectCard = ({ project }) => {
   );
 };
 
-ProjectCard.propTypes = {
+ProjectCardComponent.propTypes = {
   project: PropTypes.shape({
     title: PropTypes.string.isRequired,
     slug: PropTypes.string.isRequired,
@@ -28,4 +28,4 @@ ProjectCard.propTypes = {
   }).isRequired,
 };
 
-export default ProjectCard;
+export default ProjectCardComponent;

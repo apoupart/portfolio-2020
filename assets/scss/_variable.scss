@@ -12,8 +12,10 @@ $orange: #e07714;
 $red: #953935;
 
 $techColors: (
-    php:  #f24162, 
-    wordpress: #591240,
+    php: $lighBlue, 
+    wordpress: $lightRed,
+    unity: $orange,
+    react: $red,
 );
 
 // SIZE

@@ -1,11 +1,7 @@
-import Link from "next/link";
 import { useQuery } from "@apollo/react-hooks";
 import PropTypes from "prop-types";
-import { PROJECT_LISTS } from "../../gql/projectList";
 import { PROJECT_FILTERED } from "../../gql/projectFiltered";
-import ProjectCard from "../projectCard/projectCard";
-import { useState } from "react";
-import TechnologiesListComponent from "../technologiesList/technologiesList";
+import ProjectCardComponent from "../projectCard/projectCard";
 import style from "./projectsList.module.scss"
 
 const ProjectListComponent = ({ slug }) => {
@@ -20,7 +16,7 @@ const ProjectListComponent = ({ slug }) => {
       <ul className={style["projects-list"]}>
         {data.projects.map((data) => (
           <li className={style["projects-list__item"]} key={data.id}>
-            <ProjectCard project={data} />
+            <ProjectCardComponent project={data} />
           </li>
         ))}
       </ul>

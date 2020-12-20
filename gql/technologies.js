@@ -6,6 +6,7 @@ export const TECHNOLOGIES = gql`
       id
       name
       slug
+      icon_name
     }
   }
 `;

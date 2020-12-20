@@ -1,0 +1,35 @@
+@import "../../assets/scss/variable";
+@import "../../assets/scss/mixins";
+@import "../../assets/scss/function";
+
+.technology-button {
+    color: $white;
+    border-radius: 4px;
+    box-shadow: 0 0 4px $black;
+    border: none;
+    padding: 0.75rem 1rem;
+    @include font-size(14px);
+    margin-right: 1rem;
+    border: 2px solid $gray;
+    background-color: transparent;
+    transition: background 0.1s ease-in;
+    cursor: pointer;
+    @each $pointer, $bgcolor in $techColors {
+        &[data-technology="#{$pointer}"] {
+            border: 2px solid $bgcolor;
+            &:hover {
+                background-color: rgba($color: $bgcolor, $alpha: 0.3);
+            }
+        }
+    }
+    &--is-active {
+        @each $pointer, $bgcolor in $techColors {
+            &[data-technology="#{$pointer}"] {
+                background: $bgcolor;
+                &:hover {
+                    background-color: darken($bgcolor, 5);
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,11 @@
+@import "../../assets/scss/variable";
+@import "../../assets/scss/mixins";
+@import "../../assets/scss/function";
+
+.technologies-list {
+    max-width: calculateRem($contentWidth);
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+    padding-bottom: 1.5rem;
+}

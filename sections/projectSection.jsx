@@ -1,11 +1,7 @@
-import Link from "next/link";
-import { useQuery } from "@apollo/react-hooks";
-import { PROJECT_LISTS } from "../gql/projectList";
-import ProjectCard from "../components/projectCard/projectCard";
 import { useState } from "react";
 import TechnologiesListComponent from "../components/technologiesList/technologiesList";
 import ProjectListComponent from "../components/projectsList/projectsList";
-import { PROJECT_FILTERED } from "../gql/projectFiltered";
+import style from './projectSection.module.scss'
 
 const ProjectsSectionComponent = () => {
   const [technology, setTechnology] = useState(null);
@@ -17,10 +13,10 @@ const ProjectsSectionComponent = () => {
     }
   };
   return (
-    <>
-      <TechnologiesListComponent onClickEvent={(e) => clickOnChild(e)} />
+    <section className={style['project-section']}>
+      <TechnologiesListComponent onClickEvent={(e) => clickOnChild(e)} selectedTechnology={technology} />
       <ProjectListComponent slug={technology} />
-    </>
+    </section>
   );
 };
 
