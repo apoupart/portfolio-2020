@@ -1,4 +1,4 @@
-import gql from "graphql-tag";
+import gql from 'graphql-tag';
 
 export const TECHNOLOGIES = gql`
   query projectList {
@@ -10,3 +10,5 @@ export const TECHNOLOGIES = gql`
     }
   }
 `;
+
+export default TECHNOLOGIES;

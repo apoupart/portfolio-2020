@@ -1,4 +1,4 @@
-import gql from "graphql-tag";
+import gql from 'graphql-tag';
 
 export const PROJECT_FILTERED = gql`
   query projectList($slug: String) {
@@ -19,3 +19,5 @@ export const PROJECT_FILTERED = gql`
     }
   }
 `;
+
+export default PROJECT_FILTERED;

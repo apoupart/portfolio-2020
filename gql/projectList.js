@@ -1,4 +1,4 @@
-import gql from "graphql-tag";
+import gql from 'graphql-tag';
 
 export const PROJECT_LISTS = gql`
   query projectList {
@@ -18,3 +18,5 @@ export const PROJECT_LISTS = gql`
     }
   }
 `;
+
+export default PROJECT_LISTS;
