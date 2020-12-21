@@ -3,6 +3,6 @@ module.exports = {
   plugins: ['react', 'prettier'],
   extends: ['airbnb', 'prettier', 'prettier/react'],
   rules: {
-    'prettier/prettier': ['error', {}, { usePrettierrc: true }]
+    'prettier/prettier': ['error', {}, { usePrettierrc: true }],
   },
 };
