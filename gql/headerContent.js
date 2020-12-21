@@ -1,4 +1,4 @@
-import gql from "graphql-tag";
+import gql from 'graphql-tag';
 
 export const HEADING = gql`
   query headingContent {
@@ -10,3 +10,5 @@ export const HEADING = gql`
     }
   }
 `;
+
+export default HEADING;

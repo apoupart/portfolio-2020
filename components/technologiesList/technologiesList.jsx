@@ -28,7 +28,7 @@ const TechnologiesListComponent = ({ onClickEvent, selectedTechnology }) => {
 
 TechnologiesListComponent.defaultProps = {
   onClickEvent: () => {},
-  selectedTechnology: ''
+  selectedTechnology: '',
 };
 
 TechnologiesListComponent.propTypes = {

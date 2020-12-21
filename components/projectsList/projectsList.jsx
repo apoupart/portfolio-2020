@@ -1,11 +1,12 @@
-import { useQuery } from "@apollo/react-hooks";
-import PropTypes from "prop-types";
-import { PROJECT_FILTERED } from "../../gql/projectFiltered";
-import ProjectCardComponent from "../projectCard/projectCard";
-import style from "./projectsList.module.scss"
+import React from 'react';
+import { useQuery } from '@apollo/react-hooks';
+import PropTypes from 'prop-types';
+import { PROJECT_FILTERED } from '../../gql/projectFiltered';
+import ProjectCardComponent from '../projectCard/projectCard';
+import style from './projectsList.module.scss';
 
 const ProjectListComponent = ({ slug }) => {
-  const { loading, error, data, refetch } = useQuery(PROJECT_FILTERED, {
+  const { loading, error, data } = useQuery(PROJECT_FILTERED, {
     variables: { slug: slug || undefined },
   });
   if (error) return <h1>-Error loading data on projectLists Component</h1>;
@@ -13,10 +14,10 @@ const ProjectListComponent = ({ slug }) => {
 
   return (
     <>
-      <ul className={style["projects-list"]}>
-        {data.projects.map((data) => (
-          <li className={style["projects-list__item"]} key={data.id}>
-            <ProjectCardComponent project={data} />
+      <ul className={style['projects-list']}>
+        {data.projects.map((project) => (
+          <li className={style['projects-list__item']} key={project.id}>
+            <ProjectCardComponent project={project} />
           </li>
         ))}
       </ul>
@@ -24,8 +25,12 @@ const ProjectListComponent = ({ slug }) => {
   );
 };
 
+ProjectListComponent.defaultProps = {
+  slug: '',
+};
+
 ProjectListComponent.propTypes = {
-    slug: PropTypes.string
-  };
+  slug: PropTypes.string,
+};
 
 export default ProjectListComponent;
