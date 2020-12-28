@@ -37,7 +37,10 @@ const TechnologyButtonComponent = ({
   };
 
   const icon = technology.icon_name ? (
-    <FontAwesomeIcon icon={['fab', technology.icon_name]} />
+    <FontAwesomeIcon
+      className={style['technology-button__icon']}
+      icon={['fab', technology.icon_name]}
+    />
   ) : (
     <FontAwesomeIcon icon={faCode} />
   );

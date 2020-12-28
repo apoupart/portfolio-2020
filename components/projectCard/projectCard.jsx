@@ -3,29 +3,62 @@ import Link from 'next/link';
 import PropTypes from 'prop-types';
 import style from './projectCard.module.scss';
 
-const ProjectCardComponent = ({ project }) => (
-  <Link href={`/projets/${encodeURIComponent(project.slug)}`}>
-    <div
-      className={[
-        style['project-card'],
-        style[`project-card--tech-${project.slug}`],
-      ].join(' ')}
-      data-technology={project.technologies[0].slug}
-    >
-      <div className={style['project-card__padding']} />
-      <img
-        className={style['project-card__image']}
-        src={project.image[0].url}
-        loading="lazy"
-        alt={`Image designant le project: ${project.title}`}
-        aria-hidden="true"
-      />
-      <div className={style['project-card__wrapper']}>
-        <p className={style['project-card__title']}>{project.title}&gt;</p>
+const ProjectCardComponent = ({ project, isLoading }) => {
+  if (isLoading) {
+    return (
+      <div
+        className={[
+          style['project-card'],
+          style[`project-card--is-loading`],
+        ].join(' ')}
+      >
+        <div className={style['project-card__padding']} />
       </div>
-    </div>
-  </Link>
-);
+    );
+  }
+  return (
+    <Link href={`/projets/${encodeURIComponent(project.slug)}`}>
+      <div
+        className={[
+          style['project-card'],
+          style[`project-card--tech-${project.slug}`],
+        ].join(' ')}
+        data-technology={project.technologies[0].slug}
+      >
+        <div className={style['project-card__padding']} />
+        <img
+          className={style['project-card__image']}
+          src={project.image[0].url}
+          loading="lazy"
+          alt={`Image designant le project: ${project.title}`}
+          aria-hidden="true"
+        />
+        <div className={style['project-card__wrapper']}>
+          <p className={style['project-card__title']}>{project.title}&gt;</p>
+        </div>
+      </div>
+    </Link>
+  );
+};
+
+ProjectCardComponent.defaultProps = {
+  project: {
+    title: '',
+    slug: '',
+    image: [
+      {
+        url: '',
+        id: '',
+      },
+    ],
+    technologies: [
+      {
+        slug: '',
+      },
+    ],
+  },
+  isLoading: false,
+};
 
 ProjectCardComponent.propTypes = {
   project: PropTypes.shape({
@@ -42,7 +75,8 @@ ProjectCardComponent.propTypes = {
         slug: PropTypes.string.isRequired,
       }),
     ]),
-  }).isRequired,
+  }),
+  isLoading: PropTypes.bool,
 };
 
 export default ProjectCardComponent;

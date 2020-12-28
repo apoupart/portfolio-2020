@@ -3,7 +3,7 @@ import Head from 'next/head';
 import { useQuery } from '@apollo/react-hooks';
 import AboutMeComponent from '../components/aboutMe/aboutMe';
 import HeaderComponent from '../components/header/header';
-import ProjectsSectionComponent from '../sections/projectSection';
+import ProjectsSectionComponent from '../sections/projects/projectSection';
 import { HEADING } from '../gql/headerContent';
 
 const Home = () => {

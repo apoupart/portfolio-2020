@@ -1,24 +1,25 @@
 import React from 'react';
 import { useRouter } from 'next/router';
+import ProjectDetailSection from '../../sections/project-detail/projectDetailSection';
 
 export async function getStaticPaths() {
+  console.log('getStaticPaths');
   const res = await fetch(`${process.env.NEXT_PUBLIC_GRAPHQL_URL}/projects`);
   const posts = await res.json();
 
-  // Get the paths we want to pre-render based on posts
   const paths = posts.map((post) => ({
     params: { id: post.id, slug: post.slug },
   }));
   return {
     paths,
-    fallback: false, // fallback is set to false because we already know the slugs ahead of time
+    fallback: false,
   };
 }
 export async function getStaticProps({ params }) {
+  console.log('getStaticProps', params);
   return {
     props: params,
   };
-  //
 }
 const singleProject = () => {
   const router = useRouter();
@@ -28,6 +29,7 @@ const singleProject = () => {
     <>
       <h2>
         is placed in
+        <ProjectDetailSection slug={slug} />
         {slug}
       </h2>
     </>

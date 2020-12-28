@@ -10,16 +10,25 @@ const ProjectListComponent = ({ slug }) => {
     variables: { slug: slug || undefined },
   });
   if (error) return <h1>-Error loading data on projectLists Component</h1>;
-  if (loading) return <h1>Loading via projectLists...</h1>;
+  const lineNumberArray = Array(6).fill('');
+  const loadingCard =
+    loading &&
+    lineNumberArray.map((data, index) => (
+      <li className={style['projects-list__item']} key={index}>
+        <ProjectCardComponent isLoading />
+      </li>
+    ));
 
   return (
     <>
       <ul className={style['projects-list']}>
-        {data.projects.map((project) => (
-          <li className={style['projects-list__item']} key={project.id}>
-            <ProjectCardComponent project={project} />
-          </li>
-        ))}
+        {loadingCard}
+        {data &&
+          data.projects.map((project) => (
+            <li className={style['projects-list__item']} key={project.id}>
+              <ProjectCardComponent project={project} />
+            </li>
+          ))}
       </ul>
     </>
   );

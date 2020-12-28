@@ -17,7 +17,8 @@
     @each $pointer, $bgcolor in $techColors {
         &[data-technology="#{$pointer}"] {
             border: 2px solid $bgcolor;
-            &:hover {
+            &:hover,
+            &:focus {
                 background-color: rgba($color: $bgcolor, $alpha: 0.3);
             }
         }
@@ -26,13 +27,14 @@
         @each $pointer, $bgcolor in $techColors {
             &[data-technology="#{$pointer}"] {
                 background: $bgcolor;
-                &:hover {
+                &:hover,
+                &:focus {
                     background-color: darken($bgcolor, 5);
                 }
             }
         }
     }
-    .svg-inline--fa {
+    &__icon {
         width: 1.2rem;
         padding-right: 0.5rem;
     }

@@ -1,5 +1,5 @@
 import React from 'react';
-import ProjectsSectionComponent from '../sections/projectSection';
+import ProjectsSectionComponent from '../sections/projects/projectSection';
 
 const ProjectsPage = () => <ProjectsSectionComponent />;
 
