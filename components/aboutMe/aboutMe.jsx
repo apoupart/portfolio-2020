@@ -9,7 +9,8 @@ const AboutMeComponent = ({ catchPhrase }) => {
     <li key={`line-${index}`}>{index + 1}</li>
   ));
   return (
-    <div className={style['about-me']}>
+    <div className={style['about-me']} id="about-me">
+      <h3 className="visually-hidden">À propos de moi</h3>
       <div className={style['about-me__wrapper']}>
         <div className={style['about-me__dots']} aria-hidden="true" />
         <ul className={style['about-me__sideline']} aria-hidden="true">

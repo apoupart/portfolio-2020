@@ -8,6 +8,9 @@
     border-radius: 0.5rem;
     cursor: pointer;
     overflow: hidden;
+    border: none;
+    display: block;
+    width: 100%;
     &--is-loading {
         opacity: 0;
         background: darken($darkBlue, 10);
@@ -43,7 +46,8 @@
                     background: $bgcolor;
                 }
             }
-            .project-card:hover & {
+            .project-card:hover &,
+            .project-card:focus & {
                 opacity: 0.7;
                 height: 100%;
             }
@@ -60,7 +64,8 @@
         position: absolute;
         transform: translate(-50%, -50%);
         transition: width 0.25s ease-in;
-        .project-card:hover & {
+        .project-card:hover &,
+        .project-card:focus & {
             width: 115%;
         }
     }
@@ -87,7 +92,8 @@
             transform: translateX(-50%);
             transition: all 0.25s ease-in 0.1s;
 
-            .project-card:hover & {
+            .project-card:hover &,
+            .project-card:focus & {
                 width: 25%;
                 // left: 0;
             }

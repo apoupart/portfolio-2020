@@ -18,11 +18,12 @@ const ProjectCardComponent = ({ project, isLoading }) => {
   }
   return (
     <Link href={`/projets/${encodeURIComponent(project.slug)}`}>
-      <div
+      <button
         className={[
           style['project-card'],
           style[`project-card--tech-${project.slug}`],
         ].join(' ')}
+        type="button"
         data-technology={project.technologies[0].slug}
       >
         <div className={style['project-card__padding']} />
@@ -34,9 +35,12 @@ const ProjectCardComponent = ({ project, isLoading }) => {
           aria-hidden="true"
         />
         <div className={style['project-card__wrapper']}>
-          <p className={style['project-card__title']}>{project.title}&gt;</p>
+          <p className={style['project-card__title']}>
+            <span className="visually-hidden">Visiter le projets: </span>
+            {project.title}
+          </p>
         </div>
-      </div>
+      </button>
     </Link>
   );
 };

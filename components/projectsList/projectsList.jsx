@@ -1,7 +1,7 @@
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import PropTypes from 'prop-types';
-import { PROJECT_FILTERED } from '../../gql/projectFiltered';
+import { PROJECT_FILTERED } from '../../gql/projectFilteredBySlug';
 import ProjectCardComponent from '../projectCard/projectCard';
 import style from './projectsList.module.scss';
 
@@ -10,10 +10,10 @@ const ProjectListComponent = ({ slug }) => {
     variables: { slug: slug || undefined },
   });
   if (error) return <h1>-Error loading data on projectLists Component</h1>;
-  const lineNumberArray = Array(6).fill('');
+  const loopArray = Array(6).fill('');
   const loadingCard =
     loading &&
-    lineNumberArray.map((data, index) => (
+    loopArray.map((project, index) => (
       <li className={style['projects-list__item']} key={index}>
         <ProjectCardComponent isLoading />
       </li>
@@ -21,6 +21,7 @@ const ProjectListComponent = ({ slug }) => {
 
   return (
     <>
+      <h3 className="visually-hidden">Liste des projets</h3>
       <ul className={style['projects-list']}>
         {loadingCard}
         {data &&

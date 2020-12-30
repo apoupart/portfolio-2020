@@ -9,8 +9,9 @@ export const PROJECT_FILTERED = gql`
       }
       id
       title
-      description
       slug
+      link
+      github
       technologies {
         id
         name

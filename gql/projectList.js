@@ -9,7 +9,6 @@ export const PROJECT_LISTS = gql`
       }
       id
       title
-      description
       slug
       technologies {
         id

@@ -153,6 +153,13 @@ class MyApp extends App {
               strong {
                 font-weight: bold;
               }
+              .visually-hidden {
+                position: absolute;
+                height: 0;
+                width: 0;
+                overflow: hidden;
+                opacity: 0;
+              }
             `}
           </style>
         </>

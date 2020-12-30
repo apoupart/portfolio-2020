@@ -1,7 +1,7 @@
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import PropTypes from 'prop-types';
-import { PROJECT_FILTERED } from '../../gql/projectFiltered';
+import { PROJECT_FILTERED } from '../../gql/projectFilteredBySlug';
 import style from './projectDetailSection.module.scss';
 
 const ProjectDetailSection = ({ slug }) => {

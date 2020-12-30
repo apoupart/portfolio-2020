@@ -8,5 +8,6 @@ module.exports = {
   },
   globals: {
     fetch: false,
+    window: true,
   },
 };
