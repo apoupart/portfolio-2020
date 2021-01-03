@@ -1,0 +1,20 @@
+@import "../../assets/scss/variable";
+@import "../../assets/scss/mixins";
+@import "../../assets/scss/function";
+
+.knowledge {
+    &__section {
+        margin: 0 auto;
+        display: block;
+        max-width: calculateRem($contentWidth);
+        &:nth-child(2n+1) {
+            .knowledge__wrapper {
+                flex-direction: row-reverse;
+            }
+        }
+    }
+    &__wrapper {
+        display: flex;
+        flex-direction: row;
+    }
+}

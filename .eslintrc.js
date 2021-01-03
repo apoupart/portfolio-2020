@@ -5,6 +5,7 @@ module.exports = {
   rules: {
     'prettier/prettier': ['error', {}, { usePrettierrc: true }],
     'react/no-array-index-key': 'warn',
+    'dot-notation': 'warn',
   },
   globals: {
     fetch: false,

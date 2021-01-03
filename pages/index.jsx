@@ -5,6 +5,7 @@ import AboutMeComponent from '../components/aboutMe/aboutMe';
 import HeaderComponent from '../components/header/header';
 import ProjectsSectionComponent from '../sections/projects/projectSection';
 import { HEADING } from '../gql/headerContent';
+import KnowledgeListComponent from '../components/knowledgeList/knowledgeList';
 
 const Home = () => {
   const { loading, error, data } = useQuery(HEADING);
@@ -99,6 +100,7 @@ const Home = () => {
       <HeaderComponent bannerUrl={data.content.banner.url} />
       <AboutMeComponent catchPhrase={data.content.catch_phrase} />
       <ProjectsSectionComponent />
+      <KnowledgeListComponent />
     </div>
   );
 };
