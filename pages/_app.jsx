@@ -153,6 +153,10 @@ class MyApp extends App {
               strong {
                 font-weight: bold;
               }
+              .container {
+                background-color: #282c34;
+                color: #f2f2f2;
+              }
               .visually-hidden {
                 position: absolute;
                 height: 0;

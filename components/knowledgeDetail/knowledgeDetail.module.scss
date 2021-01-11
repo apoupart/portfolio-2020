@@ -3,18 +3,31 @@
 @import "../../assets/scss/function";
 
 .knowledge {
-    &__section {
-        margin: 0 auto;
-        display: block;
-        max-width: calculateRem($contentWidth);
-        &:nth-child(2n+1) {
-            .knowledge__wrapper {
-                flex-direction: row-reverse;
-            }
-        }
-    }
     &__wrapper {
         display: flex;
         flex-direction: row;
+        justify-content: space-around;
+        padding: calculateRem(40px) 0;
+    }
+
+    &__main-icon {
+        position: relative;
+        margin-top: calculateRem(80px);
+        left: calculateRem(-90px);
+        color: darken($color: $darkBlue, $amount: 10);
+        @include font-size(240px);
+        opacity: 0.6;
+    }
+
+    &__title {
+        @include font-size(32px);
+    }
+
+    &__list {
+        @include font-size(18px);
+        padding-top: 60px;
+        &--item {
+            padding: 10px;
+        }
     }
 }

@@ -43,22 +43,24 @@ fontawesome.library.add(
 );
 
 const KnowledgeDetailComponent = ({ knowledge }) => (
-  <section className={style['knowledge__section']}>
-    <div className={style['knowledge__wrapper']}>
-      <div className={style['knowledge__heading']}>
-        <h3>{knowledge.title}</h3>
-        <FontAwesomeIcon icon={['fas', knowledge.icon]} />
-      </div>
-      <ul className={style['knowledge__list']}>
-        {knowledge &&
-          knowledge.knowledgeList.map((data) => (
-            <li className={style['knowledge__list-item']} key={data.id}>
-              {data.name}
-            </li>
-          ))}
-      </ul>
+  <div className={style['knowledge__wrapper']}>
+    <div className={style['knowledge__heading']}>
+      <h3 className={style['knowledge__title']}>{knowledge.title}</h3>
+      <FontAwesomeIcon
+        aria-hidden="true"
+        className={style['knowledge__main-icon']}
+        icon={['fas', knowledge.icon]}
+      />
     </div>
-  </section>
+    <ul className={style['knowledge__list']}>
+      {knowledge &&
+        knowledge.knowledgeList.map((data) => (
+          <li className={style['knowledge__list--item']} key={data.id}>
+            {data.name}
+          </li>
+        ))}
+    </ul>
+  </div>
 );
 
 KnowledgeDetailComponent.propTypes = {

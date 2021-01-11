@@ -12,13 +12,16 @@ const KnowledgeListComponent = ({ slug }) => {
   if (loading) return <h1>Loading via KnowledgeListComponent...</h1>;
   if (error) return <h1>-Error loading data on KnowledgeListComponent</h1>;
 
-  return (
+  const sectionArray =
     data &&
     data.knowledges.map((knowledge) => (
-      <>
+      <div className={style['knowledge__single-section']}>
         <KnowledgeDetailComponent knowledge={knowledge} />
-      </>
-    ))
+      </div>
+    ));
+
+  return (
+    <section className={style['knowledge__section']}>{sectionArray}</section>
   );
 };
 
