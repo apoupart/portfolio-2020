@@ -1,12 +1,12 @@
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import PropTypes from 'prop-types';
-import { PROJECT_FILTERED } from '../../gql/projectFilteredBySlug';
+import { PROJECT_FILTERED_BY_TECH } from '../../gql/projectFilteredByTechSlug';
 import ProjectCardComponent from '../projectCard/projectCard';
 import style from './projectsList.module.scss';
 
 const ProjectListComponent = ({ slug }) => {
-  const { loading, error, data } = useQuery(PROJECT_FILTERED, {
+  const { loading, error, data } = useQuery(PROJECT_FILTERED_BY_TECH, {
     variables: { slug: slug || undefined },
   });
   if (error) return <h1>-Error loading data on projectLists Component</h1>;

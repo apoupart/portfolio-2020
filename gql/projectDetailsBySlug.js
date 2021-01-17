@@ -2,7 +2,7 @@ import gql from 'graphql-tag';
 
 export const PROJECT_DETAILS = gql`
   query projectList($slug: String) {
-    projects(where: { technologies: { slug: $slug } }) {
+    projects(where: { slug: $slug }) {
       image {
         url
         id

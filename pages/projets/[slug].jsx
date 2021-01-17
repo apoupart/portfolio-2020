@@ -26,13 +26,9 @@ const singleProject = () => {
   const { slug } = router.query; // Destructuring our router object
 
   return (
-    <>
-      <h2>
-        is placed in
-        <ProjectDetailSection slug={slug} />
-        {slug}
-      </h2>
-    </>
+    <div className="container">
+      <ProjectDetailSection slug={slug} />
+    </div>
   );
 };
 

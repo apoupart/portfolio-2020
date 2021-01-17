@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 
-export const PROJECT_FILTERED = gql`
+export const PROJECT_FILTERED_BY_TECH = gql`
   query projectList($slug: String) {
     projects(where: { technologies: { slug: $slug } }) {
       image {
@@ -21,4 +21,4 @@ export const PROJECT_FILTERED = gql`
   }
 `;
 
-export default PROJECT_FILTERED;
+export default PROJECT_FILTERED_BY_TECH;
