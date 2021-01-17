@@ -17,7 +17,10 @@ const ProjectCardComponent = ({ project, isLoading }) => {
     );
   }
   return (
-    <Link href={`/projets/${encodeURIComponent(project.slug)}`}>
+    <Link
+      href="/projets/[slug]"
+      as={`/projets/${encodeURIComponent(project.slug)}`}
+    >
       <button
         className={[
           style['project-card'],

@@ -10,18 +10,20 @@ export async function getStaticPaths() {
   const paths = posts.map((post) => ({
     params: { id: post.id, slug: post.slug },
   }));
+
   return {
     paths,
     fallback: false,
   };
 }
 export async function getStaticProps({ params }) {
-  console.log('getStaticProps', params);
+  console.log('getStaticProps ->', params);
   return {
     props: params,
   };
 }
 const singleProject = () => {
+  console.log('single project');
   const router = useRouter();
   const { slug } = router.query; // Destructuring our router object
 
