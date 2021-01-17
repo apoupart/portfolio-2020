@@ -11,10 +11,14 @@ export const PROJECT_DETAILS = gql`
       title
       description
       slug
+      year
+      link
+      github
       technologies {
         id
         name
         slug
+        icon_name
       }
     }
   }

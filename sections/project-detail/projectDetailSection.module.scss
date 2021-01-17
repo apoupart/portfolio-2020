@@ -8,6 +8,9 @@
         display: flex;
         max-width: calculateRem($contentWidth);
         margin: 0 auto;
+        padding: calculateRem(80px) 0;
+        min-height: 100vh;
+        align-items: center;
         flex-wrap: wrap;
     }
     &__image-wrapper {
@@ -19,11 +22,16 @@
     &__title {
         @include font-size(32px);
         padding-bottom: calculateRem(24px);
+        padding-top: calculateRem(12px);
     }
     &__description {
         @include font-size(14px);
         @include line-height(22px);
-        font-weight: light;
+        font-weight: 300;
+        max-width: 80%;
+        p:not(:first-child) {
+            margin-top: calculateRem(20px);
+        }
     }
     &__content {
         padding: calculateRem(24px);
@@ -35,5 +43,17 @@
         flex-grow: 1;
         margin-left: -10%;
         margin: calculateRem(32px) 0 calculateRem(32px) -10%;
+    }
+
+    &__technology-list {
+        margin-top: calculateRem(24px);
+    }
+
+    &__technology-list-item {
+        display: inline-block;
+        margin-right: 1rem;
+        &:last-child {
+            margin-right: 0;
+        }
     }
 }

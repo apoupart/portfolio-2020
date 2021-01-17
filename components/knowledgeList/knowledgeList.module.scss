@@ -23,10 +23,8 @@
             }
         }
         @each $property, $color in $techColors {
-            // $i: index($techColors, $color);
             $i: index(($techColors), ($property $color));
             &:nth-child(#{$i}) {
-                // background-color: $color;
                 svg[class*="main-icon"] {
                     color: $color;
                 }

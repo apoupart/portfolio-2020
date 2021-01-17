@@ -15,7 +15,7 @@ import {
   faWordpressSimple,
 } from '@fortawesome/free-brands-svg-icons';
 import { faCode } from '@fortawesome/free-solid-svg-icons';
-import style from './technologyButton.module.scss';
+import style from './technologyTag.module.scss';
 
 /**
  * Add all the possible technology as font here.
@@ -33,52 +33,25 @@ fontawesome.library.add(
   faVuejs
 );
 
-const TechnologyButtonComponent = ({
-  onClickEvent,
-  selectedTechnology,
-  technology,
-}) => {
-  const onClickButton = () => {
-    onClickEvent(technology.slug);
-  };
-
+const TechnologyTagComponent = ({ technology }) => {
   const icon = technology.icon_name ? (
     <FontAwesomeIcon
-      className={style['technology-button__icon']}
+      className={style['technology-tag__icon']}
       icon={['fab', technology.icon_name]}
     />
   ) : (
-    <FontAwesomeIcon
-      className={style['technology-button__icon']}
-      icon={faCode}
-    />
+    <FontAwesomeIcon className={style['technology-tag__icon']} icon={faCode} />
   );
 
   return (
-    <button
-      type="button"
-      className={[
-        style['technology-button'],
-        selectedTechnology === technology.slug &&
-          style['technology-button--is-active'],
-      ].join(' ')}
-      onClick={() => onClickButton()}
-      data-technology={technology.slug}
-    >
+    <span className={style['technology-tag']} data-technology={technology.slug}>
       {icon}
       {technology.name}
-    </button>
+    </span>
   );
 };
 
-TechnologyButtonComponent.defaultProps = {
-  onClickEvent: () => {},
-  selectedTechnology: '',
-};
-
-TechnologyButtonComponent.propTypes = {
-  onClickEvent: PropTypes.func,
-  selectedTechnology: PropTypes.string,
+TechnologyTagComponent.propTypes = {
   technology: PropTypes.shape({
     name: PropTypes.string.isRequired,
     slug: PropTypes.string.isRequired,
@@ -86,4 +59,4 @@ TechnologyButtonComponent.propTypes = {
   }).isRequired,
 };
 
-export default TechnologyButtonComponent;
+export default TechnologyTagComponent;

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import ReactMarkdown from 'react-markdown';
 import { PROJECT_DETAILS } from '../../gql/projectDetailsBySlug';
 import style from './projectDetailSection.module.scss';
-import TechnologyButtonComponent from '../../components/technologyButton/technologyButton';
+import TechnologyTagComponent from '../../components/technologyTag/technologyTag';
 
 const ProjectDetailSection = ({ slug }) => {
   const { loading, error, data } = useQuery(PROJECT_DETAILS, {
@@ -38,13 +38,17 @@ const ProjectDetailSection = ({ slug }) => {
             <ReactMarkdown className={style['project-detail__description']}>
               {projectData.description}
             </ReactMarkdown>
-            <ul>
+            <ul className={style['project-detail__technology-list']}>
               {projectData.technologies.map((technology) => (
-                <li key={technology.id}>
-                  <TechnologyButtonComponent technology={technology} />
+                <li
+                  key={technology.id}
+                  className={style['project-detail__technology-list-item']}
+                >
+                  <TechnologyTagComponent technology={technology} />
                 </li>
               ))}
             </ul>
+            {projectData.year && <p>{projectData.year}</p>}
           </div>
         </div>
       </section>

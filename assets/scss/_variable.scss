@@ -4,6 +4,8 @@ $white: #f2f2f2;
 $darkBlue: #282c34;
 $blue: #619ab8;
 $lighBlue: #56aef8;
+$green: #97C178;
+$darkGreen: #79a759;
 $gray: #859ca8;
 $darkGray: #292929;
 $lightGray: #abb2ba;
@@ -15,7 +17,9 @@ $techColors: (
     php: $lighBlue, 
     wordpress: $lightRed,
     unity: $orange,
-    react: $red,
+    react: $darkGreen,
+    sass: $red,
+    vue: $green,
 );
 
 // SIZE
