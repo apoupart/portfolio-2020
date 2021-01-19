@@ -13,13 +13,15 @@ const AboutMeComponent = ({ catchPhrase }) => {
       <h3 className="visually-hidden">À propos de moi</h3>
       <div className={style['about-me__wrapper']}>
         <div className={style['about-me__dots']} aria-hidden="true" />
-        <ul className={style['about-me__sideline']} aria-hidden="true">
-          {lineNumber}
-        </ul>
 
-        <ReactMarkdown className={style['about-me__content']}>
-          {catchPhrase}
-        </ReactMarkdown>
+        <div className={style['about-me__content']}>
+          <ul className={style['about-me__sideline']} aria-hidden="true">
+            {lineNumber}
+          </ul>
+          <ReactMarkdown className={style['about-me__content-data']}>
+            {catchPhrase}
+          </ReactMarkdown>
+        </div>
       </div>
     </div>
   );

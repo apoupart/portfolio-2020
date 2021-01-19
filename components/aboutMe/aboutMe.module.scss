@@ -65,8 +65,13 @@
         padding-left: 60px;
         max-width: 960px;
         color: $white;
+        position: relative;
+        overflow: hidden;
         p {
             padding-bottom: 30px;
+            &:last-child {
+                padding-bottom: 0;
+            }
         }
         strong {
             color: $blue;
@@ -78,6 +83,7 @@
     }
 
     &__sideline {
+        left: 0;
         text-align: right;
         opacity: 0.6;
         position: absolute;
