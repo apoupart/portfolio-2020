@@ -48,7 +48,35 @@ const ProjectDetailSection = ({ slug }) => {
                 </li>
               ))}
             </ul>
-            {projectData.year && <p>{projectData.year}</p>}
+            {projectData.year && (
+              <p className={style['project-detail__technology-opt-data']}>
+                {projectData.year}
+              </p>
+            )}
+            {projectData.link && (
+              <p className={style['project-detail__technology-opt-data']}>
+                <a
+                  href={`//${projectData.link}`}
+                  rel="noreferrer"
+                  target="_blank"
+                  title={`Site web du projet ${projectData.title}`}
+                >
+                  {projectData.link}
+                </a>
+              </p>
+            )}
+            {projectData.github && (
+              <p className={style['project-detail__technology-opt-data']}>
+                <a
+                  href={`//${projectData.github}`}
+                  rel="noreferrer"
+                  target="_blank"
+                  title={`Accéder au projet: ${projectData.title} sur github`}
+                >
+                  {projectData.github}
+                </a>
+              </p>
+            )}
           </div>
         </div>
       </section>
