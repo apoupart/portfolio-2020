@@ -2,7 +2,7 @@ import React from 'react';
 import Head from 'next/head';
 import { useQuery } from '@apollo/react-hooks';
 import AboutMeComponent from '../components/aboutMe/aboutMe';
-import HeaderComponent from '../components/header/header';
+import HeaderBannerComponent from '../components/headerBanner/headerBanner';
 import ProjectsSectionComponent from '../sections/projects/projectSection';
 import { HEADING } from '../gql/headerContent';
 import KnowledgeListComponent from '../components/knowledgeList/knowledgeList';
@@ -97,7 +97,7 @@ const Home = () => {
         {favicon}
       </Head>
 
-      <HeaderComponent bannerUrl={data.content.banner.url} />
+      <HeaderBannerComponent bannerUrl={data.content.banner.url} />
       <AboutMeComponent catchPhrase={data.content.catch_phrase} />
       <ProjectsSectionComponent />
       <KnowledgeListComponent />

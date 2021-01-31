@@ -1,0 +1,39 @@
+@import "../../assets/scss/variable";
+@import "../../assets/scss/mixins";
+@import "../../assets/scss/function";
+
+.main-navigation {
+    background-color: darken($darkBlue, 5);
+    box-shadow: 0 0 6px rgba($color: $black, $alpha: 0.8);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    transform: translate(0, -100px);
+    transition: transform 0.25s ease-in 0.2s;
+    &__button {
+        border: none;
+        outline: none;
+        box-shadow: none;
+        background-color: transparent;
+        color: $white;
+        cursor: pointer;
+        @include font-size(16px);
+        padding: 12px 8px;
+        transition: color 0.25s ease;
+        @include media(large) {
+            padding: 18px 8px;
+        }
+        &:first-child {
+            padding-left: 0;
+        }
+        &:last-child {
+            padding-right: 0;
+        }
+        &:focus,
+        &:hover {
+            color: $lightGray;
+        }
+    }
+}

@@ -6,7 +6,6 @@
     &__single-section {
         margin: 0 auto;
         display: block;
-        max-width: calculateRem($contentWidth);
         padding: calculateRem(40px) 0;
         &:first-child {
             padding-top: 0;
@@ -25,8 +24,9 @@
         @each $property, $color in $techColors {
             $i: index(($techColors), ($property $color));
             &:nth-child(#{$i}) {
+                background-color: $color;
                 svg[class*="main-icon"] {
-                    color: $color;
+                    color: darken($color, 15);
                 }
             }
         }

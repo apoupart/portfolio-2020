@@ -6,12 +6,14 @@ import Head from 'next/head';
 import { config } from '@fortawesome/fontawesome-svg-core';
 import { withApollo } from '../libs/apollo';
 import '@fortawesome/fontawesome-svg-core/styles.css'; // Import the CSS
+import NavigationBarComponent from '../components/navigationBar/navigationBar';
 
 config.autoAddCss = false; // Tell Font Awesome to skip adding the CSS automatically since it's being imported above
 
 class MyApp extends App {
   render() {
-    const { Component, pageProps, apollo } = this.props;
+    const { Component, pageProps, apollo, router } = this.props;
+    console.log('router', router);
     return (
       <ApolloProvider client={apollo}>
         <Head>
@@ -21,6 +23,7 @@ class MyApp extends App {
             rel="stylesheet"
           />
         </Head>
+        <NavigationBarComponent isHome={router.route && router.route === '/'} />
         <Component {...pageProps} />
         <>
           {/* Reset css */}
@@ -151,7 +154,7 @@ class MyApp extends App {
                 border-collapse: collapse;
                 border-spacing: 0;
               }
-              html {
+              html * {
                 font-family: 'IBM Plex Mono', monospace;
               }
               strong {

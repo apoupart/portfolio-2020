@@ -1,22 +1,18 @@
-class SkipToSectionService {
-  getCordinateById(id) {
-    if (this.hasWindowAvailable) {
-      const element = window.document.getElementById(id);
-      return element?.offsetTop || 0;
-    }
-    return 0;
+import { hasWindowAvailable } from './utils';
+
+export const getCordinateById = (id) => {
+  if (hasWindowAvailable) {
+    const element = window.document.getElementById(id);
+    return element?.offsetTop || 0;
   }
+  return 0;
+};
 
-  skipToSection(sectionName) {
-    if (this.hasWindowAvailable()) {
-      window?.scrollTo({
-        top: this.getCordinateById(sectionName),
-        behavior: 'smooth',
-      });
-    }
+export const skipToSection = (sectionName) => {
+  if (hasWindowAvailable) {
+    window?.scrollTo({
+      top: getCordinateById(sectionName),
+      behavior: 'smooth',
+    });
   }
-
-  hasWindowAvailable = () => typeof window !== 'undefined' && window;
-}
-
-export default new SkipToSectionService();
+};
