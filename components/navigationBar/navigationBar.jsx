@@ -7,7 +7,7 @@ import { hasWindowAvailable } from '../../services/utils';
 import MainNavigationComponent from '../mainNavigation/mainNavigation';
 
 const NavigationBarComponent = ({ isHome }) => {
-  const [isScrollingUp, setScrollingUp] = useState(false);
+  const [isScrollingUp, setScrollingUp] = useState(true);
   let lastYPos = 0;
 
   useEffect(() => {
