@@ -4,8 +4,61 @@
 
 .main-navigation {
     display: flex;
-   justify-content: space-between;
+    justify-content: space-between;
     &__wrapper {
+        position: relative;
+        position: absolute;
+        height: 100vh;
+        width: 100%;
+        z-index: 11;
+        background: red;
+        top: 0;
+        left: 0;
+        flex-direction: column;
+        text-align: left;
+        display: flex;
+        transform: translate(-100%, 0);
+        visibility: hidden;
+        opacity: 0;
+        transition: all 0.25s ease-in;
+        padding: 40px 20px;
+        @include media(medium) {
+            padding: 0;
+            visibility: visible;
+            flex-direction: row;
+            position: relative;
+            height: auto;
+            width: auto;
+            background-color: transparent;
+            transform: translate(0, 0);
+            opacity: 1;
+        }
+        &--is-open {
+            opacity: 1;
+            transform: translate(0, 0);
+            visibility: visible;
+            @include media(medium) {
+            }
+        }
+    }
+    &__close {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        color: white;
+        @include font-size(18px);
+        background: transparent;
+        outline: none;
+        border: none;
+        box-shadow: none;
+        cursor: pointer;
+        &:hover,
+        &:focus {
+            border: 2px solid black;
+        }
+        @include media(medium) {
+            display: none;
+        }
     }
     &__image {
         display: flex;

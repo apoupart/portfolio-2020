@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import Image from 'next/image';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import style from './mainNavigation.module.scss';
+import HamburgerButtonComponent from '../hamburgerButton/hamburgerButton';
 
 const MainNavigationComponent = () => {
+  const navigation = useRef(null);
+  const [isMenuOpened, setMenuOpen] = useState(false);
+
   const sectionList = [
     {
       label: 'À Propos',
@@ -42,7 +48,31 @@ const MainNavigationComponent = () => {
           <span>Développeur Front-End</span>
         </p>
       </div>
-      <div className={style['main-navigation__wrapper']}>{sectionData}</div>
+      <HamburgerButtonComponent
+        onClickEvent={() => setMenuOpen(!isMenuOpened)}
+      />
+      <div
+        className={[
+          style['main-navigation__wrapper'],
+          isMenuOpened && style['main-navigation__wrapper--is-open'],
+        ].join(' ')}
+        aria-hidden={!isMenuOpened}
+        ref={navigation}
+      >
+        {sectionData}
+        <button
+          className={style['main-navigation__close']}
+          onClick={() => setMenuOpen(!isMenuOpened)}
+          type="button"
+          aria-label="Fermer le menu"
+          tabIndex="0"
+          onBlur={() => {
+            navigation.current.querySelector('button').focus();
+          }}
+        >
+          <FontAwesomeIcon icon={faTimes} aria-hidden="false" />
+        </button>
+      </div>
     </div>
   );
 };

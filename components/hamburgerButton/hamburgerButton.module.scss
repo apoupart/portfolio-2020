@@ -1,0 +1,45 @@
+@import "../../assets/scss/variable";
+@import "../../assets/scss/mixins";
+@import "../../assets/scss/function";
+
+.hamburger-button {
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    cursor: pointer;
+    &:focus,
+    &:active {
+        span {
+            top: 1px;
+            left: 1px;
+            color: $lightGray;
+            background: $lightGray;
+        }
+    }
+    span {
+        display: block;
+        font-size: 0;
+        height: 3px;
+        width: 30px;
+        background: $white;
+        color: $white;
+        position: relative;
+        &::before,
+        &::after {
+            content: "";
+            font-size: 50rem;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: -8px;
+            left: 0;
+            background: currentColor;
+        }
+        &::after {
+            top: 8px;
+        }
+        @include media(medium) {
+            display: none;
+        }
+    }
+}
