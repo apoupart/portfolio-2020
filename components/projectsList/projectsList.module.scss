@@ -4,9 +4,16 @@
 
 .projects-list {
     max-width: calculateRem($contentWidth);
+    padding: 0 calculateRem(20px);
     margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(1, 1fr);
     grid-column-gap: 1rem;
     grid-row-gap: 1rem;
+    @include media(medium) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    @include media(large) {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }

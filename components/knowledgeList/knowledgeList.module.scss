@@ -7,6 +7,8 @@
         margin: 0 auto;
         display: block;
         padding: calculateRem(40px) 0;
+        overflow: hidden;
+        position: relative;
         &:first-child {
             padding-top: 0;
         }
@@ -15,10 +17,17 @@
         }
         &:nth-child(2n) {
             > * {
-                flex-direction: row-reverse;
+                text-align: left;
             }
             svg[class*="main-icon"] {
-                left: calculateRem(90px);
+                right: calculateRem(-90px);
+                left: initial;
+                @include media(medium) {
+                    right: calculateRem(-50px);
+                }
+                @include media(medium) {
+                    right: 0;
+                }
             }
         }
         @each $property, $color in $techColors {

@@ -8,4 +8,6 @@
     width: 100%;
     display: flex;
     padding-bottom: 1.5rem;
+    padding: 0 calculateRem(20px) 1.5rem calculateRem(20px);
+    overflow: auto;
 }

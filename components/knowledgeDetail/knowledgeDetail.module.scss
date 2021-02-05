@@ -5,20 +5,33 @@
 .knowledge {
     &__wrapper {
         display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-        padding: calculateRem(80px) 0;
-        max-width: calculateRem($contentWidth);
+        flex-direction: column;
+        padding: calculateRem(40px) calculateRem(20px);
+        max-width: calculateRem(840px);
         margin: 0 auto;
+        text-align: right;
+        @include media(medium) {
+            padding: calculateRem(60px) calculateRem(20px);
+        }
+        @include media(large) {
+            position: relative;
+            padding: calculateRem(80px) calculateRem(20px);
+        }
     }
 
     &__main-icon {
-        position: relative;
-        margin-top: calculateRem(80px);
+        position: absolute;
+        margin-top: calculateRem(30px);
         left: calculateRem(-90px);
         color: darken($color: $darkBlue, $amount: 10);
         @include font-size(240px);
         opacity: 0.6;
+        @include media(medium) {
+            left: calculateRem(-50px);
+        }
+        @include media(large) {
+            left: 0;
+        }
     }
 
     &__title {
@@ -28,6 +41,7 @@
     &__list {
         @include font-size(18px);
         padding-top: 60px;
+        z-index: 1;
         &--item {
             padding: 10px;
         }

@@ -9,22 +9,34 @@
     padding: 80px 0;
     &__wrapper {
         display: block;
-        margin: 0 auto;
-        padding-top: 60px;
-        padding-bottom: 40px;
+        
         max-width: calculateRem($contentWidth);
         position: relative;
         overflow: hidden;
-        font-size: 20px;
+        @include font-size(14px);
         line-height: 1.5;
         box-sizing: border-box;
-        padding: 40px 60px;
-        border-radius: 20px;
-        border: 2px solid $white;
+        padding: 20px 15px;
+        border-radius: 10px;
+        margin: 0 10px;
+        border: 2px solid rgba($color: $white, $alpha: 0.5);
+        @include media(medium) {
+            border-radius: 15px;
+            @include font-size(18px);
+            padding: 30px 40px;
+            margin: 0 20px;
+        }
+        @include media(large) {
+            margin: 0 auto;
+            border-radius: 20px;
+            @include font-size(20px);
+            border: 2px solid $white;
+            padding: 40px 60px;
+        }
     }
 
     &__dots {
-        left: -8px;
+        left: 15px;
         top: -8px;
         width: 12px;
         height: 12px;
@@ -34,6 +46,9 @@
         box-sizing: border-box;
         margin-bottom: 20px;
         transition: background 250ms ease-in;
+        @include media(medium) {
+            left: -8px;
+        }
         cursor: pointer;
         &:hover {
             background-color: $lightGray;
@@ -62,13 +77,25 @@
     }
 
     &__content {
-        padding-left: 60px;
         max-width: 960px;
         color: $white;
         position: relative;
         overflow: hidden;
+        padding-left: 30px;
+        @include media(medium) {
+            padding-left: 50px;
+        }
+        @include media(large) {
+            padding-left: 60px;
+        }
         p {
-            padding-bottom: 30px;
+            padding-bottom: 21px;
+            @include media(medium) {
+                padding-bottom: 27px;
+            }
+            @include media(large) {
+                padding-bottom: 30px;
+            }
             &:last-child {
                 padding-bottom: 0;
             }

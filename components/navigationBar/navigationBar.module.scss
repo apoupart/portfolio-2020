@@ -19,6 +19,7 @@
         display: block;
         margin: 0 auto;
         max-width: calculateRem($contentWidth);
+        padding: 0 calculateRem(20px);
     }
     &__back-button {
         display: inline-block;
