@@ -4,5 +4,11 @@
 
 .project-section {
     background-color: $darkBlue;
-    padding: 80px 0;
+    padding: calculateRem(40px) 0 calculateRem(60px) 0;
+    @include media(medium) {
+        padding: calculateRem(60px) 0;
+    }
+    @include media(large) {
+        padding: calculateRem(80px) 0;
+    }
 }

@@ -14,6 +14,7 @@ import {
   faVuejs,
 } from '@fortawesome/free-brands-svg-icons';
 import {
+  faCheckCircle,
   faCode,
   faDumbbell,
   faLaptopCode,
@@ -39,6 +40,7 @@ fontawesome.library.add(
   faVuejs,
   faCode,
   faLowVision,
+  faCheckCircle,
   faDumbbell
 );
 

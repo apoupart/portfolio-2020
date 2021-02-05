@@ -3,35 +3,39 @@
 @import "../../assets/scss/function";
 
 .about-me {
-    min-height: 100vh;
     display: block;
     background-color: $darkBlue;
-    padding: 80px 0;
+    padding: calculateRem(20px) 0;
+    @include media(medium) {
+        padding: calculateRem(60px) 0;
+    }
+    @include media(large) {
+        padding: calculateRem(60px) calculateRem(20px) calculateRem(20px) calculateRem(20px);
+    }
     &__wrapper {
         display: block;
-        
-        max-width: calculateRem($contentWidth);
+        max-width: #{calculateRem($contentWidth - 40px)};
         position: relative;
         overflow: hidden;
         @include font-size(14px);
         line-height: 1.5;
         box-sizing: border-box;
-        padding: 20px 15px;
+        padding: calculateRem(20px) calculateRem(15px);
         border-radius: 10px;
-        margin: 0 10px;
+        margin: 0 calculateRem(10px);
         border: 2px solid rgba($color: $white, $alpha: 0.5);
         @include media(medium) {
             border-radius: 15px;
             @include font-size(18px);
-            padding: 30px 40px;
-            margin: 0 20px;
+            padding: calculateRem(30px) calculateRem(40px);
+            margin: 0 calculateRem(20px);
         }
         @include media(large) {
             margin: 0 auto;
             border-radius: 20px;
             @include font-size(20px);
             border: 2px solid $white;
-            padding: 40px 60px;
+            padding: calculateRem(40px) calculateRem(60px);
         }
     }
 
@@ -44,7 +48,7 @@
         border: 2px solid $white;
         position: relative;
         box-sizing: border-box;
-        margin-bottom: 20px;
+        margin-bottom: calculateRem(20px);
         transition: background 250ms ease-in;
         @include media(medium) {
             left: -8px;
@@ -81,20 +85,20 @@
         color: $white;
         position: relative;
         overflow: hidden;
-        padding-left: 30px;
+        padding-left: calculateRem(30px);
         @include media(medium) {
-            padding-left: 50px;
+            padding-left: calculateRem(50px);
         }
         @include media(large) {
-            padding-left: 60px;
+            padding-left: calculateRem(60px);
         }
         p {
             padding-bottom: 21px;
             @include media(medium) {
-                padding-bottom: 27px;
+                padding-bottom: calculateRem(27px);
             }
             @include media(large) {
-                padding-bottom: 30px;
+                padding-bottom: calculateRem(30px);
             }
             &:last-child {
                 padding-bottom: 0;

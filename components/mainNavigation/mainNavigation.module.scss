@@ -65,9 +65,30 @@
     &__image {
         display: flex;
         align-items: center;
+        padding: calculateRem(12px) 0;
+        @include media(medium) {
+            padding: calculateRem(8px) 0;
+        }
+        img {
+            width: calculateRem(20px);
+            @include media(medium) {
+                width: calculateRem(32px);
+            }
+        }
         &-title {
-            margin-left: 20px;
-            padding-left: 20px;
+            color: $white;
+            display: inline-block;
+            position: relative;
+            @include font-size(15px);
+            font-weight: bold;
+            animation: titleFadeIn 2s;
+            padding-left: 10px;
+            margin-left: 10px;
+            @include media(medium) {
+                margin-left: 20px;
+                padding-left: 20px;
+                @include font-size(18px);
+            }
             &::before {
                 content: "";
                 font-size: 50em;
@@ -78,18 +99,16 @@
                 top: 0;
                 background: $orange;
             }
-            color: $white;
-            display: inline-block;
-            position: relative;
-            @include font-size(18px);
-            font-weight: bold;
-            animation: titleFadeIn 2s;
             span {
                 font-weight: 300;
-                letter-spacing: 0.03rem;
-                @include font-size(14px);
+                
+                @include font-size(12px);
                 display: block;
                 width: 100%;
+                @include media(medium) {
+                    letter-spacing: 0.03rem;
+                    @include font-size(14px);
+                }
             }
         }
     }
@@ -122,16 +141,25 @@
 @keyframes titleFadeIn {
     0% {
       opacity: 0;
-      padding-left: 10px;
-      margin-left: 5px;
+      padding-left: 5px;
+      margin-left: 2px;
+      @include media(medium) {
+          padding-left: 10px;
+          margin-left: 5px;
+
+      }
     }
     40% {
       opacity: 0.7;
     }
     100% {
       opacity: 1;
-      padding-left: 20px;
-      margin-left: 20px;
+      padding-left: 10px;
+      margin-left: 10px;
+      @include media(medium) {
+          padding-left: 20px;
+          margin-left: 20px;
+      }
     }
   }
   

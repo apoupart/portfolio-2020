@@ -35,13 +35,26 @@
     }
 
     &__title {
-        @include font-size(32px);
+        @include font-size(24px);
+        @include media(medium) {
+            @include font-size(28px);
+        }
+        @include media(large) {
+            @include font-size(32px);
+        }
     }
 
     &__list {
-        @include font-size(18px);
-        padding-top: 60px;
+        @include font-size(14px);
+        padding-top: calculateRem(40px);
         z-index: 1;
+        @include media(medium) {
+            padding-top: calculateRem(60px);
+            @include font-size(16px);
+        }
+        @include media(large) {
+            @include font-size(18px);
+        }
         &--item {
             padding: 10px;
         }

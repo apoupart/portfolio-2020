@@ -1,6 +1,9 @@
 @import "./function";
 
 $breakpoints: (
+  "small": (
+    min-width: 576px,
+  ),
   "medium": (
     min-width: 768px,
   ),
