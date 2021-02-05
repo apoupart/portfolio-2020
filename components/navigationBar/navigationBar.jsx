@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import style from './navigationBar.module.scss';
 import { hasWindowAvailable } from '../../services/utils';
 import MainNavigationComponent from '../mainNavigation/mainNavigation';
+import Link from 'next/link';
 
 const NavigationBarComponent = ({ isHome }) => {
   const [isScrollingUp, setScrollingUp] = useState(true);
@@ -34,14 +35,16 @@ const NavigationBarComponent = ({ isHome }) => {
       <div className={style['navigation-bar__content']}>
         {isHome && <MainNavigationComponent />}
         {!isHome && (
-          <button type="button" className={style['navigation-bar__button']}>
-            <FontAwesomeIcon
-              aria-hidden="true"
-              className={style['navigation-bar__icon-down']}
-              icon={faArrowLeft}
-            />
-            <span>Retour à l&apos;accueil</span>
-          </button>
+          <Link href="/">
+            <a className={style['navigation-bar__back-button']}>
+              <FontAwesomeIcon
+                aria-hidden="true"
+                className={style['navigation-bar__icon-down']}
+                icon={faArrowLeft}
+              />
+              <p>Retour</p>
+            </a>
+          </Link>
         )}
       </div>
     </nav>

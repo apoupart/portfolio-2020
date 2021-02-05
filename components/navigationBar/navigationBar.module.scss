@@ -20,4 +20,31 @@
         margin: 0 auto;
         max-width: calculateRem($contentWidth);
     }
+    &__back-button {
+        display: inline-block;
+        padding: 18px 0;
+        color: $white;
+        transition: all 0.25s ease-in;
+        cursor: pointer;
+        &:focus,
+        &:hover {
+            color: $lightGray;
+            padding-right: 6px;
+            p {
+                padding-left: 14px;
+            }
+        }
+        p {
+            display: none;
+            padding-left: 20px;
+            color: currentColor;
+            transition: all 0.25s ease-in;
+            @include media(medium) {
+                display: inline-block;
+            }
+        }
+        svg {
+            color: currentColor;
+        }
+    }
 }
