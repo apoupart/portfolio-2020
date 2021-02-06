@@ -70,19 +70,20 @@
     }
 
     &__technology-list {
-        margin-top: calculateRem(24px);
+        margin-top: calculateRem(16px);
         margin-bottom: calculateRem(18px);
     }
 
     &__technology-list-item {
         display: inline-block;
         margin-right: calculateRem(16px);
+        margin-top: calculateRem(8px);
         &:last-child {
             margin-right: 0;
         }
     }
     &__technology-opt-data {
-        @include font-size(12px);
+        @include font-size(13px);
         @include line-height(18px);
         display: block;
         &:first-child {
@@ -95,6 +96,9 @@
                 color: darken($color: $white, $amount: 5);
                 text-decoration: underline;
             }
+        }
+        svg {
+            padding-right: calculateRem(8px);
         }
     }
 }

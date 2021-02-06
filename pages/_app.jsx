@@ -13,7 +13,6 @@ config.autoAddCss = false; // Tell Font Awesome to skip adding the CSS automatic
 class MyApp extends App {
   render() {
     const { Component, pageProps, apollo, router } = this.props;
-    console.log('router', router);
     return (
       <ApolloProvider client={apollo}>
         <Head>

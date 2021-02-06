@@ -2,6 +2,9 @@ import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import PropTypes from 'prop-types';
 import ReactMarkdown from 'react-markdown';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import { PROJECT_DETAILS } from '../../gql/projectDetailsBySlug';
 import style from './projectDetailSection.module.scss';
 import TechnologyTagComponent from '../../components/technologyTag/technologyTag';
@@ -17,7 +20,6 @@ const ProjectDetailSection = ({ slug }) => {
     return 'Missing info';
   }
   const projectData = data.projects[0];
-  console.log('data', data, data.name, slug);
   return (
     <>
       <section className={style['project-detail']}>
@@ -55,6 +57,7 @@ const ProjectDetailSection = ({ slug }) => {
             )}
             {projectData.link && (
               <p className={style['project-detail__technology-opt-data']}>
+                <FontAwesomeIcon icon={faExternalLinkAlt} />
                 <a
                   href={`//${projectData.link}`}
                   rel="noreferrer"
@@ -67,13 +70,14 @@ const ProjectDetailSection = ({ slug }) => {
             )}
             {projectData.github && (
               <p className={style['project-detail__technology-opt-data']}>
+                <FontAwesomeIcon icon={faGithub} />
                 <a
                   href={`//${projectData.github}`}
                   rel="noreferrer"
                   target="_blank"
                   title={`Accéder au projet: ${projectData.title} sur github`}
                 >
-                  {projectData.github}
+                  Voir sur Github
                 </a>
               </p>
             )}

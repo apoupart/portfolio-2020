@@ -3,7 +3,6 @@ import { useRouter } from 'next/router';
 import ProjectDetailSection from '../../sections/project-detail/projectDetailSection';
 
 export async function getStaticPaths() {
-  console.log('getStaticPaths');
   const res = await fetch(`${process.env.NEXT_PUBLIC_GRAPHQL_URL}/projects`);
   const posts = await res.json();
 
@@ -17,13 +16,11 @@ export async function getStaticPaths() {
   };
 }
 export async function getStaticProps({ params }) {
-  console.log('getStaticProps ->', params);
   return {
     props: params,
   };
 }
 const singleProject = () => {
-  console.log('single project');
   const router = useRouter();
   const { slug } = router.query; // Destructuring our router object
 
