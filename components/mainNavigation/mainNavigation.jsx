@@ -10,7 +10,9 @@ const MainNavigationComponent = () => {
   const [isMenuOpened, setMenuOpen] = useState(false);
 
   const jumpToSection = (sectionName) => {
-    console.log('jump to section', sectionName);
+    if (isMenuOpened) {
+      setMenuOpen(false);
+    }
     skipToSection(sectionName);
   };
 
