@@ -13,7 +13,7 @@ const ProjectsSectionComponent = () => {
     }
   };
   return (
-    <section className={style['project-section']}>
+    <section className={style['project-section']} id="project">
       <TechnologiesListComponent
         onClickEvent={(e) => clickOnChild(e)}
         selectedTechnology={technology}

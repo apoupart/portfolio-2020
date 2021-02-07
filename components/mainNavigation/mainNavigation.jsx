@@ -1,13 +1,18 @@
 import React, { useRef, useState } from 'react';
-import Image from 'next/image';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import style from './mainNavigation.module.scss';
 import HamburgerButtonComponent from '../hamburgerButton/hamburgerButton';
+import { skipToSection } from '../../services/skipToSection';
 
 const MainNavigationComponent = () => {
   const navigation = useRef(null);
   const [isMenuOpened, setMenuOpen] = useState(false);
+
+  const jumpToSection = (sectionName) => {
+    console.log('jump to section', sectionName);
+    skipToSection(sectionName);
+  };
 
   const sectionList = [
     {
@@ -20,7 +25,7 @@ const MainNavigationComponent = () => {
     },
     {
       label: 'Connaissances',
-      slug: 'Knowledge',
+      slug: 'knowledge',
     },
   ];
 
@@ -28,6 +33,9 @@ const MainNavigationComponent = () => {
     <button
       key={data.slug}
       type="button"
+      onClick={() => {
+        jumpToSection(data.slug);
+      }}
       className={style['main-navigation__button']}
     >
       {data.label}
@@ -37,10 +45,10 @@ const MainNavigationComponent = () => {
   return (
     <div className={style['main-navigation']}>
       <div className={style['main-navigation__image']}>
-        <Image
+        <img
           width="32"
           height="39"
-          src="/assets/images/alexandre-poupart-logo-white.svg"
+          src="//res.cloudinary.com/apoupart/image/upload/v1612621299/alexandre-poupart-logo-white_kstkpm.svg"
           alt="Logo associés a mon nom"
         />
         <p className={style['main-navigation__image-title']}>
@@ -54,7 +62,7 @@ const MainNavigationComponent = () => {
       <div
         className={[
           style['main-navigation__wrapper'],
-          isMenuOpened && style['main-navigation__wrapper--is-open'],
+          !!isMenuOpened && style['main-navigation__wrapper--is-open'],
         ].join(' ')}
         aria-hidden={!isMenuOpened}
         ref={navigation}

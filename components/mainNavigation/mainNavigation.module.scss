@@ -20,9 +20,10 @@
         transform: translate(-100%, 0);
         visibility: hidden;
         opacity: 0;
-        transition: all 0.25s ease-in;
+        transition: transform 0.25s ease-in, opacity 0.25s ease-in;
         padding: 40px 20px;
         @include media(medium) {
+            transition: none;
             padding: 0;
             visibility: visible;
             flex-direction: row;
@@ -34,19 +35,18 @@
             opacity: 1;
         }
         &--is-open {
+            transition: transform 0.25s ease-in, opacity 0.25s ease-in, visibility 0.25s ease-in;
             opacity: 1;
             transform: translate(0, 0);
             visibility: visible;
-            @include media(medium) {
-            }
         }
     }
     &__close {
         position: absolute;
-        top: 20px;
-        right: 20px;
+        top: calculateRem(10px);
+        right: calculateRem(20px);
         color: $orange;
-        @include font-size(18px);
+        @include font-size(30px);
         background: transparent;
         outline: none;
         border: none;
@@ -57,6 +57,11 @@
         &:focus {
             box-shadow: 0 0 2px rgba($color: $white, $alpha: 0.3);
             color: darken($orange, 10)
+        }
+        &:focus,
+        &:active {
+            top: calculateRem(11px);
+            right: calculateRem(19px);
         }
         @include media(medium) {
             display: none;

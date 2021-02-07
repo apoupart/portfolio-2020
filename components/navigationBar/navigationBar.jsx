@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
 import PropTypes from 'prop-types';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import style from './navigationBar.module.scss';
 import { hasWindowAvailable } from '../../services/utils';
 import MainNavigationComponent from '../mainNavigation/mainNavigation';
-import Link from 'next/link';
 
 const NavigationBarComponent = ({ isHome }) => {
   const [isScrollingUp, setScrollingUp] = useState(true);

@@ -21,7 +21,9 @@ const KnowledgeListComponent = ({ slug }) => {
     ));
 
   return (
-    <section className={style['knowledge__section']}>{sectionArray}</section>
+    <section className={style['knowledge__section']} id="knowledge">
+      {sectionArray}
+    </section>
   );
 };
 
