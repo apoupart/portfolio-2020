@@ -5,6 +5,7 @@ import { ApolloProvider } from '@apollo/react-hooks';
 import Head from 'next/head';
 import { config } from '@fortawesome/fontawesome-svg-core';
 import { withApollo } from '../libs/apollo';
+import '../services/fontAwesomeLibrairy';
 import '@fortawesome/fontawesome-svg-core/styles.css'; // Import the CSS
 import NavigationBarComponent from '../components/navigationBar/navigationBar';
 

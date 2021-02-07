@@ -71,17 +71,17 @@ ProjectCardComponent.propTypes = {
   project: PropTypes.shape({
     title: PropTypes.string.isRequired,
     slug: PropTypes.string.isRequired,
-    image: PropTypes.shape([
+    image: PropTypes.arrayOf(
       PropTypes.shape({
         url: PropTypes.string.isRequired,
         id: PropTypes.string.isRequired,
-      }),
-    ]),
-    technologies: PropTypes.shape([
+      })
+    ),
+    technologies: PropTypes.arrayOf(
       PropTypes.shape({
         slug: PropTypes.string.isRequired,
-      }),
-    ]),
+      })
+    ),
   }),
   isLoading: PropTypes.bool,
 };

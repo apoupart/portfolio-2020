@@ -15,7 +15,7 @@ const KnowledgeListComponent = ({ slug }) => {
   const sectionArray =
     data &&
     data.knowledges.map((knowledge) => (
-      <div className={style['knowledge__single-section']}>
+      <div key={knowledge.slug} className={style['knowledge__single-section']}>
         <KnowledgeDetailComponent knowledge={knowledge} />
       </div>
     ));

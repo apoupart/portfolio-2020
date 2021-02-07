@@ -1,5 +1,6 @@
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
+import Head from 'next/head';
 import PropTypes from 'prop-types';
 import ReactMarkdown from 'react-markdown';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -22,6 +23,9 @@ const ProjectDetailSection = ({ slug }) => {
   const projectData = data.projects[0];
   return (
     <>
+      <Head>
+        <title>Alexandre Poupart - Projet {projectData.title}</title>
+      </Head>
       <section className={style['project-detail']}>
         <div className={style['project-detail__wrapper']}>
           <div className={style['project-detail__image-wrapper']}>

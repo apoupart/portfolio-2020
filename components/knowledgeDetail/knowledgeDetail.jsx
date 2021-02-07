@@ -2,47 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import fontawesome from '@fortawesome/fontawesome';
-import {
-  faAngular,
-  faGithubAlt,
-  faJava,
-  faLaravel,
-  faMicrosoft,
-  faNodeJs,
-  faReact,
-  faVuejs,
-} from '@fortawesome/free-brands-svg-icons';
-import {
-  faCheckCircle,
-  faCode,
-  faDumbbell,
-  faLaptopCode,
-  faLowVision,
-  faStream,
-} from '@fortawesome/free-solid-svg-icons';
-
 import style from './knowledgeDetail.module.scss';
-
-/**
- * Add all the possible technology as font here.
- */
-fontawesome.library.add(
-  faLaptopCode,
-  faGithubAlt,
-  faStream,
-  faMicrosoft,
-  faNodeJs,
-  faLaravel,
-  faJava,
-  faAngular,
-  faReact,
-  faVuejs,
-  faCode,
-  faLowVision,
-  faCheckCircle,
-  faDumbbell
-);
 
 const KnowledgeDetailComponent = ({ knowledge }) => (
   <div className={style['knowledge__wrapper']}>
@@ -56,8 +16,11 @@ const KnowledgeDetailComponent = ({ knowledge }) => (
     </div>
     <ul className={style['knowledge__list']}>
       {knowledge &&
-        knowledge.knowledgeList.map((data) => (
-          <li className={style['knowledge__list--item']} key={data.id}>
+        knowledge.knowledgeList.map((data, key) => (
+          <li
+            className={style['knowledge__list--item']}
+            key={`${knowledge.slug}__${key}`}
+          >
             {data.name}
           </li>
         ))}
@@ -70,12 +33,12 @@ KnowledgeDetailComponent.propTypes = {
     title: PropTypes.string.isRequired,
     slug: PropTypes.string.isRequired,
     icon: PropTypes.string.isRequired,
-    knowledgeList: PropTypes.shape([
+    knowledgeList: PropTypes.arrayOf(
       PropTypes.shape({
-        name: PropTypes.string.isRequired,
+        name: PropTypes.string,
         icon: PropTypes.string,
-      }),
-    ]),
+      })
+    ),
   }).isRequired,
 };
 

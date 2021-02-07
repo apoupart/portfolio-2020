@@ -6,6 +6,7 @@ export const KNOWLEDGES_LIST = gql`
       id
       title
       icon
+      slug
       knowledgeList {
         name
         icon

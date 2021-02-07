@@ -109,7 +109,7 @@
             font-weight: normal;
         }
         em {
-            color: $lightRed;
+            color: lighten($lightRed, 5);
         }
     }
 
