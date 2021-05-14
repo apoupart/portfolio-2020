@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import style from './navigationBar.module.scss';
 import { hasWindowAvailable } from '../../services/utils';
 import MainNavigationComponent from '../mainNavigation/mainNavigation';
+import LanguageSwitcherComponent from '../languageSwitcher/languageSwitcher';
 
 const NavigationBarComponent = ({ isHome }) => {
   const [isScrollingUp, setScrollingUp] = useState(true);
@@ -35,17 +36,20 @@ const NavigationBarComponent = ({ isHome }) => {
       <div className={style['navigation-bar__content']}>
         {isHome && <MainNavigationComponent />}
         {!isHome && (
-          <Link href="/">
-            <a className={style['navigation-bar__back-button']}>
-              <FontAwesomeIcon
-                aria-hidden="true"
-                className={style['navigation-bar__icon-down']}
-                icon={faArrowLeft}
-              />
-              <p>Retour</p>
-            </a>
-          </Link>
+          <>
+            <Link href="/">
+              <a className={style['navigation-bar__back-button']}>
+                <FontAwesomeIcon
+                  aria-hidden="true"
+                  className={style['navigation-bar__icon-down']}
+                  icon={faArrowLeft}
+                />
+                <p>Retour</p>
+              </a>
+            </Link>
+          </>
         )}
+        <LanguageSwitcherComponent />
       </div>
     </nav>
   );

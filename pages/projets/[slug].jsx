@@ -1,14 +1,23 @@
-import React from 'react';
 import { useRouter } from 'next/router';
+import React from 'react';
 import ProjectDetailSection from '../../sections/project-detail/projectDetailSection';
 
-export async function getStaticPaths() {
+export async function getStaticPaths({ locales }) {
+  console.log('getstaticpath');
   const res = await fetch(`${process.env.NEXT_PUBLIC_GRAPHQL_URL}/projects`);
   const posts = await res.json();
 
-  const paths = posts.map((post) => ({
-    params: { id: post.id, slug: post.slug },
-  }));
+  const paths = posts
+    .map((post) => {
+      const maps = locales.map((locale) => ({
+        params: { id: post.id, slug: post.slug },
+        locale,
+      }));
+      return maps;
+    })
+    .flat();
+
+  console.log('getstaticpath', paths);
 
   return {
     paths,
@@ -16,6 +25,7 @@ export async function getStaticPaths() {
   };
 }
 export async function getStaticProps({ params }) {
+  console.log('getstaticprops');
   return {
     props: params,
   };

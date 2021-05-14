@@ -1,0 +1,170 @@
+@import "../../assets/scss/variable";
+@import "../../assets/scss/mixins";
+@import "../../assets/scss/function";
+
+.main-navigation {
+    display: flex;
+    justify-content: space-between;
+    &__wrapper {
+        position: relative;
+        position: absolute;
+        height: 100vh;
+        width: 100%;
+        z-index: 11;
+        background: $darkBlue;
+        top: 0;
+        left: 0;
+        flex-direction: column;
+        text-align: left;
+        display: flex;
+        transform: translate(-100%, 0);
+        visibility: hidden;
+        opacity: 0;
+        transition: transform 0.25s ease-in, opacity 0.25s ease-in;
+        padding: 40px 20px;
+        @include media(medium) {
+            transition: none;
+            padding: 0;
+            visibility: visible;
+            flex-direction: row;
+            position: relative;
+            height: auto;
+            width: auto;
+            background-color: transparent;
+            transform: translate(0, 0);
+            opacity: 1;
+        }
+        &--is-open {
+            transition: transform 0.25s ease-in, opacity 0.25s ease-in, visibility 0.25s ease-in;
+            opacity: 1;
+            transform: translate(0, 0);
+            visibility: visible;
+        }
+    }
+    &__close {
+        position: absolute;
+        top: calculateRem(10px);
+        right: calculateRem(20px);
+        color: $orange;
+        @include font-size(30px);
+        background: transparent;
+        outline: none;
+        border: none;
+        box-shadow: none;
+        cursor: pointer;
+        transition: all 0.25s ease-in;
+        &:hover,
+        &:focus {
+            box-shadow: 0 0 2px rgba($color: $white, $alpha: 0.3);
+            color: darken($orange, 10)
+        }
+        &:focus,
+        &:active {
+            top: calculateRem(11px);
+            right: calculateRem(19px);
+        }
+        @include media(medium) {
+            display: none;
+        }
+    }
+    &__image {
+        display: flex;
+        align-items: center;
+        padding: calculateRem(12px) 0;
+        @include media(medium) {
+            padding: calculateRem(8px) 0;
+        }
+        img {
+            width: calculateRem(20px);
+            @include media(medium) {
+                width: calculateRem(32px);
+            }
+        }
+        &-title {
+            color: $white;
+            display: inline-block;
+            position: relative;
+            @include font-size(15px);
+            font-weight: bold;
+            animation: titleFadeIn 2s;
+            padding-left: 10px;
+            margin-left: 10px;
+            @include media(medium) {
+                margin-left: 20px;
+                padding-left: 20px;
+                @include font-size(18px);
+            }
+            &::before {
+                content: "";
+                font-size: 50em;
+                position: absolute;
+                height: 100%;
+                width: 2px;
+                left: 0;
+                top: 0;
+                background: $orange;
+            }
+            span {
+                font-weight: 300;
+                
+                @include font-size(12px);
+                display: block;
+                width: 100%;
+                @include media(medium) {
+                    letter-spacing: 0.03rem;
+                    @include font-size(14px);
+                }
+            }
+        }
+    }
+    &__button {
+        border: none;
+        outline: none;
+        box-shadow: none;
+        background-color: transparent;
+        color: $white;
+        cursor: pointer;
+        @include font-size(16px);
+        padding: 12px 8px;
+        transition: color 0.25s ease;
+        @include media(large) {
+            padding: 18px 8px;
+        }
+        &:first-child {
+            padding-left: 0;
+        }
+        &:last-child {
+            padding-right: 0;
+        }
+        &:focus,
+        &:hover {
+            color: $lightGray;
+        }
+    }
+}
+
+@keyframes titleFadeIn {
+    0% {
+      opacity: 0;
+      padding-left: 5px;
+      margin-left: 2px;
+      @include media(medium) {
+          padding-left: 10px;
+          margin-left: 5px;
+
+      }
+    }
+    40% {
+      opacity: 0.7;
+    }
+    100% {
+      opacity: 1;
+      padding-left: 10px;
+      margin-left: 10px;
+      @include media(medium) {
+          padding-left: 20px;
+          margin-left: 20px;
+      }
+    }
+  }
+  

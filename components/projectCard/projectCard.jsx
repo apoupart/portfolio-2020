@@ -2,8 +2,11 @@ import React from 'react';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 import style from './projectCard.module.scss';
+import { useRouter } from 'next/router';
 
 const ProjectCardComponent = ({ project, isLoading }) => {
+  const router = useRouter();
+  const local = 'fr';
   if (isLoading) {
     return (
       <div
@@ -29,6 +32,9 @@ const ProjectCardComponent = ({ project, isLoading }) => {
         type="button"
         data-technology={project.technologies[0].slug}
       >
+        --
+        {`/${encodeURIComponent(local)}/projets/${encodeURIComponent(project.slug)}`}
+        --
         <div className={style['project-card__padding']} />
         <img
           className={style['project-card__image']}
