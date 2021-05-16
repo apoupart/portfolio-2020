@@ -1,6 +1,7 @@
 import React from 'react';
 import App from 'next/app';
 import { ApolloProvider } from '@apollo/react-hooks';
+import { appWithTranslation } from 'next-i18next';
 
 import Head from 'next/head';
 import { config } from '@fortawesome/fontawesome-svg-core';
@@ -180,4 +181,4 @@ class MyApp extends App {
 }
 
 // Wraps all components in the tree with the data provider
-export default withApollo({ ssr: true })(MyApp);
+export default appWithTranslation(withApollo({ ssr: true })(MyApp));

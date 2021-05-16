@@ -3,6 +3,7 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useTranslation } from 'next-i18next';
 import style from './mainNavigation.module.scss';
 import HamburgerButtonComponent from '../hamburgerButton/hamburgerButton';
 import { skipToSection } from '../../services/skipToSection';
@@ -12,6 +13,9 @@ const MainNavigationComponent = () => {
   const navigation = useRef(null);
   const [isMenuOpened, setMenuOpen] = useState(false);
   const router = useRouter();
+  const { t } = useTranslation('common');
+
+  console.log(t('front-end-developper'));
   const getOtherLocal = router.locales.filter((local) => {
     console.log('local--', local, router);
     return local !== router.locale;
@@ -63,7 +67,7 @@ const MainNavigationComponent = () => {
         />
         <p className={style['main-navigation__image-title']}>
           Alexandre Poupart
-          <span>Développeur Front-End</span>
+          <span>{t('front-end-developper')}</span>
         </p>
       </div>
       <HamburgerButtonComponent

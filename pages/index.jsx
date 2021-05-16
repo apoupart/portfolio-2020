@@ -1,6 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 import { useQuery } from '@apollo/react-hooks';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import AboutMeComponent from '../components/aboutMe/aboutMe';
 import HeaderBannerComponent from '../components/headerBanner/headerBanner';
 import ProjectsSectionComponent from '../sections/projects/projectSection';
@@ -104,5 +105,11 @@ const Home = () => {
     </div>
   );
 };
+
+export const getStaticProps = async ({ locale }) => ({
+  props: {
+    ...(await serverSideTranslations(locale, ['common'])),
+  },
+});
 
 export default Home;

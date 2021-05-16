@@ -1,9 +1,9 @@
 import { useRouter } from 'next/router';
 import React from 'react';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import ProjectDetailSection from '../../sections/project-detail/projectDetailSection';
 
 export async function getStaticPaths({ locales }) {
-  console.log('getstaticpath');
   const res = await fetch(`${process.env.NEXT_PUBLIC_GRAPHQL_URL}/projects`);
   const posts = await res.json();
 
@@ -17,17 +17,18 @@ export async function getStaticPaths({ locales }) {
     })
     .flat();
 
-  console.log('getstaticpath', paths);
-
   return {
     paths,
     fallback: false,
   };
 }
-export async function getStaticProps({ params }) {
-  console.log('getstaticprops');
+export async function getStaticProps({ locale, params }) {
+  console.log('local export static props -- ', locale);
+  const localProps = await serverSideTranslations(locale, ['common']);
+
+  const props = { ...localProps, ...params };
   return {
-    props: params,
+    props,
   };
 }
 const singleProject = () => {

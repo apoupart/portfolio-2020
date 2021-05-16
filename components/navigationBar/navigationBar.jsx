@@ -3,6 +3,7 @@ import Link from 'next/link';
 import PropTypes from 'prop-types';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useTranslation } from 'next-i18next';
 import style from './navigationBar.module.scss';
 import { hasWindowAvailable } from '../../services/utils';
 import MainNavigationComponent from '../mainNavigation/mainNavigation';
@@ -10,6 +11,7 @@ import LanguageSwitcherComponent from '../languageSwitcher/languageSwitcher';
 
 const NavigationBarComponent = ({ isHome }) => {
   const [isScrollingUp, setScrollingUp] = useState(true);
+  const { t } = useTranslation('common');
   let lastYPos = 0;
 
   useEffect(() => {
@@ -44,7 +46,7 @@ const NavigationBarComponent = ({ isHome }) => {
                   className={style['navigation-bar__icon-down']}
                   icon={faArrowLeft}
                 />
-                <p>Retour</p>
+                <p>{t('return')}</p>
               </a>
             </Link>
           </>
