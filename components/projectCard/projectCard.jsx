@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 
 const ProjectCardComponent = ({ project, isLoading }) => {
   const router = useRouter();
-  const local = 'fr';
+  const { locale } = router;
   if (isLoading) {
     return (
       <div
@@ -30,10 +30,14 @@ const ProjectCardComponent = ({ project, isLoading }) => {
           style[`project-card--tech-${project.slug}`],
         ].join(' ')}
         type="button"
-        data-technology={project.technologies[0].slug}
+        data-technology={
+          project.technologies.length ? project.technologies[0].slug : ''
+        }
       >
         --
-        {`/${encodeURIComponent(local)}/projets/${encodeURIComponent(project.slug)}`}
+        {`/${encodeURIComponent(locale)}/projets/${encodeURIComponent(
+          project.slug
+        )}`}
         --
         <div className={style['project-card__padding']} />
         <img

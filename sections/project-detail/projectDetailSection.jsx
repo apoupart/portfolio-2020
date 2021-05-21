@@ -1,5 +1,4 @@
 import React from 'react';
-import { useQuery } from '@apollo/react-hooks';
 import Head from 'next/head';
 import PropTypes from 'prop-types';
 import ReactMarkdown from 'react-markdown';
@@ -9,10 +8,11 @@ import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import { PROJECT_DETAILS } from '../../gql/projectDetailsBySlug';
 import style from './projectDetailSection.module.scss';
 import TechnologyTagComponent from '../../components/technologyTag/technologyTag';
+import { useGraphQLQuery } from '../../services/graphQl';
 
 const ProjectDetailSection = ({ slug }) => {
-  const { loading, error, data } = useQuery(PROJECT_DETAILS, {
-    variables: { slug: slug || undefined },
+  const { loading, error, data } = useGraphQLQuery(PROJECT_DETAILS, {
+    slug: slug || undefined,
   });
   if (error) return <h1>-Error loading data on projectLists Component</h1>;
   if (loading) return <h1>Loading via projectLists...</h1>;

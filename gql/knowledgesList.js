@@ -1,8 +1,8 @@
 import gql from 'graphql-tag';
 
 export const KNOWLEDGES_LIST = gql`
-  query knowledge {
-    knowledges {
+  query knowledge($locale: String) {
+    knowledges(locale: $locale) {
       id
       title
       icon

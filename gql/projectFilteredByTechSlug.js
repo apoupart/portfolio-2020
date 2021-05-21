@@ -1,8 +1,8 @@
 import gql from 'graphql-tag';
 
 export const PROJECT_FILTERED_BY_TECH = gql`
-  query projectList($slug: String) {
-    projects(where: { technologies: { slug: $slug } }) {
+  query projectList($locale: String, $slug: String) {
+    projects(locale: $locale, where: { technologies: { slug: $slug } }) {
       image {
         url
         id

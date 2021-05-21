@@ -1,15 +1,15 @@
 import React from 'react';
 import Head from 'next/head';
-import { useQuery } from '@apollo/react-hooks';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import AboutMeComponent from '../components/aboutMe/aboutMe';
 import HeaderBannerComponent from '../components/headerBanner/headerBanner';
 import ProjectsSectionComponent from '../sections/projects/projectSection';
 import { HEADING } from '../gql/headerContent';
 import KnowledgeListComponent from '../components/knowledgeList/knowledgeList';
+import { useGraphQLQuery } from '../services/graphQl';
 
 const Home = () => {
-  const { loading, error, data } = useQuery(HEADING);
+  const { loading, error, data } = useGraphQLQuery(HEADING);
   if (error) return <h1>Error with header component</h1>;
   if (loading) return <h1>Loading the heading...</h1>;
 

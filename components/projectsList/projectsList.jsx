@@ -1,13 +1,13 @@
 import React from 'react';
-import { useQuery } from '@apollo/react-hooks';
 import PropTypes from 'prop-types';
 import { PROJECT_FILTERED_BY_TECH } from '../../gql/projectFilteredByTechSlug';
 import ProjectCardComponent from '../projectCard/projectCard';
 import style from './projectsList.module.scss';
+import { useGraphQLQuery } from '../../services/graphQl';
 
 const ProjectListComponent = ({ slug }) => {
-  const { loading, error, data } = useQuery(PROJECT_FILTERED_BY_TECH, {
-    variables: { slug: slug || undefined },
+  const { loading, error, data } = useGraphQLQuery(PROJECT_FILTERED_BY_TECH, {
+    slug: slug || undefined,
   });
   if (error) return <h1>-Error loading data on projectLists Component</h1>;
   const loopArray = Array(6).fill('');

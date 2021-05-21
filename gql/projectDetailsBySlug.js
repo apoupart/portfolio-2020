@@ -1,8 +1,8 @@
 import gql from 'graphql-tag';
 
 export const PROJECT_DETAILS = gql`
-  query projectList($slug: String) {
-    projects(where: { slug: $slug }) {
+  query projectList($locale: String, $slug: String) {
+    projects(locale: $locale, where: { slug: $slug }) {
       image {
         url
         id

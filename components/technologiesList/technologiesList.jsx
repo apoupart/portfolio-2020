@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useQuery } from '@apollo/react-hooks';
 import style from './technologiesList.module.scss';
 import TechnologyButtonComponent from '../technologyButton/technologyButton';
 import { TECHNOLOGIES } from '../../gql/technologies';
+import { useGraphQLQuery } from '../../services/graphQl';
 
 const TechnologiesListComponent = ({ onClickEvent, selectedTechnology }) => {
-  const { loading, error, data } = useQuery(TECHNOLOGIES);
+  const { loading, error, data } = useGraphQLQuery(TECHNOLOGIES);
   if (error) return <h1>Error</h1>;
   if (loading) return <h1>Loading via TechnologiesLists...</h1>;
   return (
