@@ -6,7 +6,9 @@ export const useGraphQLQuery = (QUERY, options = {}) => {
   const router = useRouter();
   const locale = { locale: router.locale || 'fr' };
   console.log('obj to send', { ...options, ...locale });
-  return useQuery(QUERY, {
+  const useQueryReturn = useQuery(QUERY, {
     variables: { ...options, ...locale },
   });
+  console.log('obj to send useQuery', useQueryReturn);
+  return useQueryReturn;
 };

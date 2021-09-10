@@ -1,8 +1,8 @@
 import gql from 'graphql-tag';
 
 export const TECHNOLOGIES = gql`
-  query projectList($locale: String) {
-    technologies(locale: $locale) {
+  query projectList {
+    technologies {
       id
       name
       slug
