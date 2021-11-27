@@ -23,7 +23,6 @@ export async function getStaticPaths({ locales }) {
   };
 }
 export async function getStaticProps({ locale, params }) {
-  console.log('local export static props -- ', locale);
   const localProps = await serverSideTranslations(locale, ['common']);
 
   const props = { ...localProps, ...params };
