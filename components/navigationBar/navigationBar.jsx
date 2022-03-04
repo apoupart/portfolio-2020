@@ -36,7 +36,7 @@ const NavigationBarComponent = ({ isHome }) => {
         {isHome && <MainNavigationComponent />}
         {!isHome && (
           <Link href="/">
-            <a className={style['navigation-bar__back-button']}>
+            <a href="/" className={style['navigation-bar__back-button']}>
               <FontAwesomeIcon
                 aria-hidden="true"
                 className={style['navigation-bar__icon-down']}
