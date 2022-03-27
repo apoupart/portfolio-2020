@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import Head from 'next/head';
 import { useQuery } from '@apollo/react-hooks';
@@ -6,11 +7,21 @@ import HeaderBannerComponent from '../components/headerBanner/headerBanner';
 import ProjectsSectionComponent from '../sections/projects/projectSection';
 import { HEADING } from '../gql/headerContent';
 import KnowledgeListComponent from '../components/knowledgeList/knowledgeList';
+import { createClient } from '../prismicio';
 
-const Home = () => {
-  const { loading, error, data } = useQuery(HEADING);
-  if (error) return <h1>Error with header component</h1>;
-  if (loading) return <h1>Loading the heading...</h1>;
+export async function getStaticProps({ previewData }) {
+  const client = createClient({ previewData });
+  const page = await client.getSingle('home');
+  console.log('homepage content', page);
+  return {
+    props: { page },
+  };
+}
+
+const Home = ({ page }) => {
+  // const { loading, error, data } = useQuery(HEADING);
+  // if (error) return <h1>Error with header component</h1>;
+  // if (loading) return <h1>Loading the heading...</h1>;
 
   const favicon = (
     <>
@@ -96,11 +107,30 @@ const Home = () => {
         <title>Alexandre Poupart - Developpeur Front-End // Portfolio</title>
         {favicon}
       </Head>
+      {console.log('data', page.data)}
 
+      {page?.data?.slices.map((data) => {
+        let component = <></>;
+        switch (data.slice_type) {
+          case 'primary_header':
+            component = <HeaderBannerComponent data={data.primary} />;
+            break;
+          case 'terminal_content':
+            component = (
+              <AboutMeComponent description={data.primary.description || ''} />
+            );
+            break;
+          default:
+            break;
+        }
+        return component;
+      })}
+      {/* 
+      Legacy component with graphQL
       <HeaderBannerComponent bannerUrl={data.content.banner.url} />
       <AboutMeComponent catchPhrase={data.content.catch_phrase} />
       <ProjectsSectionComponent />
-      <KnowledgeListComponent />
+      <KnowledgeListComponent /> */}
     </div>
   );
 };
