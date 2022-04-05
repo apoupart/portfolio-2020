@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React from 'react';
+import React, { useContext } from 'react';
 import Head from 'next/head';
 import { useQuery } from '@apollo/react-hooks';
 import AboutMeComponent from '../components/aboutMe/aboutMe';
@@ -8,20 +8,31 @@ import ProjectsSectionComponent from '../sections/projects/projectSection';
 import { HEADING } from '../gql/headerContent';
 import KnowledgeListComponent from '../components/knowledgeList/knowledgeList';
 import { createClient } from '../prismicio';
+import ProjectContext from '../context/project-context';
+import ContentRepeaterComponent from '../components/contentRepeater/contentRepeater';
 
 export async function getStaticProps({ previewData }) {
   const client = createClient({ previewData });
   const page = await client.getSingle('home');
-  console.log('homepage content', page);
+  const projectsList = await client.getAllByType('projects');
+  const technologies = await client.getAllByType('technologies');
   return {
-    props: { page },
+    props: { page, projectsList, technologies },
   };
 }
 
-const Home = ({ page }) => {
+const Home = ({ page, projectsList, technologies }) => {
   // const { loading, error, data } = useQuery(HEADING);
   // if (error) return <h1>Error with header component</h1>;
   // if (loading) return <h1>Loading the heading...</h1>;
+
+  console.log('projectList send', projectsList);
+
+  const { setProjects, setOriginalProjects, setTechnology } =
+    useContext(ProjectContext);
+  setProjects(projectsList);
+  setOriginalProjects(projectsList);
+  setTechnology(technologies);
 
   const favicon = (
     <>
@@ -107,24 +118,7 @@ const Home = ({ page }) => {
         <title>Alexandre Poupart - Developpeur Front-End // Portfolio</title>
         {favicon}
       </Head>
-      {console.log('data', page.data)}
-
-      {page?.data?.slices.map((data) => {
-        let component = <></>;
-        switch (data.slice_type) {
-          case 'primary_header':
-            component = <HeaderBannerComponent data={data.primary} />;
-            break;
-          case 'terminal_content':
-            component = (
-              <AboutMeComponent description={data.primary.description || ''} />
-            );
-            break;
-          default:
-            break;
-        }
-        return component;
-      })}
+      <ContentRepeaterComponent data={page?.data} />
       {/* 
       Legacy component with graphQL
       <HeaderBannerComponent bannerUrl={data.content.banner.url} />

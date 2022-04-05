@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ReactMarkdown from 'react-markdown';
 import style from './aboutMe.module.scss';
 import { wysiwygToHtmlParser } from '../../services/utils';
 

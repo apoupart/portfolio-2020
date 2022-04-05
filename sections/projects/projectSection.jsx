@@ -18,7 +18,7 @@ const ProjectsSectionComponent = () => {
         onClickEvent={(e) => clickOnChild(e)}
         selectedTechnology={technology}
       />
-      <ProjectListComponent slug={technology} />
+      <ProjectListComponent />
     </section>
   );
 };

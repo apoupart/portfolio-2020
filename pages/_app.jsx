@@ -1,6 +1,6 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
-import App from 'next/app';
+import React, { useState, useMemo } from 'react';
 import { ApolloProvider } from '@apollo/react-hooks';
 
 import Head from 'next/head';
@@ -9,13 +9,36 @@ import { withApollo } from '../libs/apollo';
 import '../services/fontAwesomeLibrairy';
 import '@fortawesome/fontawesome-svg-core/styles.css'; // Import the CSS
 import NavigationBarComponent from '../components/navigationBar/navigationBar';
+import ProjectContext from '../context/project-context';
 
 config.autoAddCss = false; // Tell Font Awesome to skip adding the CSS automatically since it's being imported above
 
-class MyApp extends App {
-  render() {
-    const { Component, pageProps, apollo, router } = this.props;
-    return (
+const MyApp = ({ Component, pageProps, apollo, router }) => {
+  // const { Component, pageProps, apollo, router } = this.props;
+  const [projects, setProjects] = useState([]);
+  const [originalProjects, setOriginalProjects] = useState([]);
+  const [technologies, setTechnology] = useState([]);
+  const value = useMemo(
+    () => ({
+      projects,
+      setProjects,
+      originalProjects,
+      setOriginalProjects,
+      technologies,
+      setTechnology,
+    }),
+    [
+      projects,
+      setProjects,
+      originalProjects,
+      setOriginalProjects,
+      technologies,
+      setTechnology,
+    ]
+  );
+
+  return (
+    <ProjectContext.Provider value={value}>
       <ApolloProvider client={apollo}>
         <Head>
           <link rel="preconnect" href="https://fonts.gstatic.com" />
@@ -176,9 +199,19 @@ class MyApp extends App {
           </style>
         </>
       </ApolloProvider>
-    );
-  }
-}
+    </ProjectContext.Provider>
+  );
+};
+// }
+// class MyApp extends App {
+//   render() {
+
+//     return (
+
+//     );
+//   }
+// }
 
 // Wraps all components in the tree with the data provider
 export default withApollo({ ssr: true })(MyApp);
+// export default MyApp;
