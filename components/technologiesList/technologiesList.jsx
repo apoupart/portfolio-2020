@@ -1,22 +1,27 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { useQuery } from '@apollo/react-hooks';
+import React, { useContext } from 'react';
 import style from './technologiesList.module.scss';
 import TechnologyButtonComponent from '../technologyButton/technologyButton';
-import { TECHNOLOGIES } from '../../gql/technologies';
+import ProjectContext from '../../context/project-context';
 
-const TechnologiesListComponent = ({ onClickEvent, selectedTechnology }) => {
-  const { loading, error, data } = useQuery(TECHNOLOGIES);
-  if (error) return <h1>Error</h1>;
-  if (loading) return <h1>Loading via TechnologiesLists...</h1>;
+const TechnologiesListComponent = () => {
+  const { selectedTechnology, technologies, setTechnology } =
+    useContext(ProjectContext);
+
+  const clickOnChild = (e) => {
+    if (selectedTechnology !== e.uid) {
+      setTechnology(e.uid);
+    } else {
+      setTechnology(null);
+    }
+  };
   return (
     <>
       <ul className={style['technologies-list']}>
-        {data.technologies.map((technology) => (
-          <li key={technology.id}>
+        {technologies.map((singleTechnology) => (
+          <li key={singleTechnology.uid}>
             <TechnologyButtonComponent
-              technology={technology}
-              onClickEvent={onClickEvent}
+              technology={singleTechnology || null}
+              onClickEvent={clickOnChild}
               selectedTechnology={selectedTechnology}
             />
           </li>
@@ -26,13 +31,4 @@ const TechnologiesListComponent = ({ onClickEvent, selectedTechnology }) => {
   );
 };
 
-TechnologiesListComponent.defaultProps = {
-  onClickEvent: () => {},
-  selectedTechnology: '',
-};
-
-TechnologiesListComponent.propTypes = {
-  onClickEvent: PropTypes.func,
-  selectedTechnology: PropTypes.string,
-};
 export default TechnologiesListComponent;

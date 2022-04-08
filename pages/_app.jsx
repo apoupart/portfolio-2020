@@ -7,34 +7,26 @@ import Head from 'next/head';
 import { config } from '@fortawesome/fontawesome-svg-core';
 import { withApollo } from '../libs/apollo';
 import '../services/fontAwesomeLibrairy';
-import '@fortawesome/fontawesome-svg-core/styles.css'; // Import the CSS
 import NavigationBarComponent from '../components/navigationBar/navigationBar';
 import ProjectContext from '../context/project-context';
+import '@fortawesome/fontawesome-svg-core/styles.css'; // Import the CSS
 
 config.autoAddCss = false; // Tell Font Awesome to skip adding the CSS automatically since it's being imported above
 
 const MyApp = ({ Component, pageProps, apollo, router }) => {
-  // const { Component, pageProps, apollo, router } = this.props;
   const [projects, setProjects] = useState([]);
-  const [originalProjects, setOriginalProjects] = useState([]);
-  const [technologies, setTechnology] = useState([]);
+  const [technologies, setTechnologies] = useState([]);
+  const [selectedTechnology, setTechnology] = useState('');
   const value = useMemo(
     () => ({
       projects,
-      setProjects,
-      originalProjects,
-      setOriginalProjects,
       technologies,
+      selectedTechnology,
+      setProjects,
       setTechnology,
+      setTechnologies,
     }),
-    [
-      projects,
-      setProjects,
-      originalProjects,
-      setOriginalProjects,
-      technologies,
-      setTechnology,
-    ]
+    [projects, technologies, selectedTechnology]
   );
 
   return (
@@ -202,15 +194,6 @@ const MyApp = ({ Component, pageProps, apollo, router }) => {
     </ProjectContext.Provider>
   );
 };
-// }
-// class MyApp extends App {
-//   render() {
-
-//     return (
-
-//     );
-//   }
-// }
 
 // Wraps all components in the tree with the data provider
 export default withApollo({ ssr: true })(MyApp);

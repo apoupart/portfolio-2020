@@ -1,12 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { useContext } from 'react';
 import Head from 'next/head';
-import { useQuery } from '@apollo/react-hooks';
-import AboutMeComponent from '../components/aboutMe/aboutMe';
-import HeaderBannerComponent from '../components/headerBanner/headerBanner';
-import ProjectsSectionComponent from '../sections/projects/projectSection';
-import { HEADING } from '../gql/headerContent';
-import KnowledgeListComponent from '../components/knowledgeList/knowledgeList';
 import { createClient } from '../prismicio';
 import ProjectContext from '../context/project-context';
 import ContentRepeaterComponent from '../components/contentRepeater/contentRepeater';
@@ -15,24 +9,16 @@ export async function getStaticProps({ previewData }) {
   const client = createClient({ previewData });
   const page = await client.getSingle('home');
   const projectsList = await client.getAllByType('projects');
-  const technologies = await client.getAllByType('technologies');
+  const technologies = await client.getAllByType('technology');
   return {
     props: { page, projectsList, technologies },
   };
 }
 
 const Home = ({ page, projectsList, technologies }) => {
-  // const { loading, error, data } = useQuery(HEADING);
-  // if (error) return <h1>Error with header component</h1>;
-  // if (loading) return <h1>Loading the heading...</h1>;
-
-  console.log('projectList send', projectsList);
-
-  const { setProjects, setOriginalProjects, setTechnology } =
-    useContext(ProjectContext);
+  const { setProjects, setTechnologies } = useContext(ProjectContext);
   setProjects(projectsList);
-  setOriginalProjects(projectsList);
-  setTechnology(technologies);
+  setTechnologies(technologies);
 
   const favicon = (
     <>

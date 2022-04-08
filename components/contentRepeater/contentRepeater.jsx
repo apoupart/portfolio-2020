@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import HeaderBannerComponent from '../headerBanner/headerBanner';
 import AboutMeComponent from '../aboutMe/aboutMe';
-import ProjectListComponent from '../projectsList/projectsList';
+import ProjectsSectionComponent from '../../sections/projects/projectSection';
 
 const ContentRepeaterComponent = ({ data }) =>
   data?.slices.map((componentData) => {
@@ -19,7 +19,7 @@ const ContentRepeaterComponent = ({ data }) =>
         );
         break;
       case 'project_list':
-        component = <ProjectListComponent />;
+        component = <ProjectsSectionComponent />;
         break;
       default:
         console.log('components not found for', componentData.slice_type);

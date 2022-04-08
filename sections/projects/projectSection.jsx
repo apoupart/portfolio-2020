@@ -1,26 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import TechnologiesListComponent from '../../components/technologiesList/technologiesList';
 import ProjectListComponent from '../../components/projectsList/projectsList';
 import style from './projectSection.module.scss';
 
-const ProjectsSectionComponent = () => {
-  const [technology, setTechnology] = useState(null);
-  const clickOnChild = (e) => {
-    if (technology !== e) {
-      setTechnology(e);
-    } else {
-      setTechnology(null);
-    }
-  };
-  return (
-    <section className={style['project-section']} id="project">
-      <TechnologiesListComponent
-        onClickEvent={(e) => clickOnChild(e)}
-        selectedTechnology={technology}
-      />
-      <ProjectListComponent />
-    </section>
-  );
-};
+const ProjectsSectionComponent = () => (
+  <section className={style['project-section']} id="project">
+    <TechnologiesListComponent />
+    <ProjectListComponent />
+  </section>
+);
 
 export default ProjectsSectionComponent;
