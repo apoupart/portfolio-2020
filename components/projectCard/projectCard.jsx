@@ -27,7 +27,7 @@ const ProjectCardComponent = ({ project, isLoading }) => {
           style[`project-card--tech-${project.data.slug}`],
         ].join(' ')}
         type="button"
-        data-technology={project.data.relatedTechnology?.uid}
+        data-technology={project.data.relatedTechnologies[0]?.technology?.uid}
       >
         <div className={style['project-card__padding']} />
         <img
@@ -60,10 +60,14 @@ ProjectCardComponent.defaultProps = {
           id: '',
         },
       ],
-      relatedTechnology: {
-        slug: '',
-        uid: '',
-      },
+      relatedTechnologies: [
+        {
+          technology: {
+            slug: '',
+            uid: '',
+          },
+        },
+      ],
     },
   },
   isLoading: false,
@@ -81,10 +85,14 @@ ProjectCardComponent.propTypes = {
           id: PropTypes.string.isRequired,
         })
       ),
-      relatedTechnology: PropTypes.shape({
-        uid: PropTypes.string,
-        slug: PropTypes.string,
-      }),
+      relatedTechnologies: PropTypes.arrayOf(
+        PropTypes.shape({
+          technology: PropTypes.shape({
+            uid: PropTypes.string,
+            slug: PropTypes.string,
+          }),
+        })
+      ),
     }),
   }),
   isLoading: PropTypes.bool,
