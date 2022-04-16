@@ -110,7 +110,7 @@ const Home = ({ page, projectsList, technologies }) => {
       <HeaderBannerComponent bannerUrl={data.content.banner.url} />
       <AboutMeComponent catchPhrase={data.content.catch_phrase} />
       <ProjectsSectionComponent />
-      <KnowledgeListComponent /> */}
+      <ItemsListSectionComponent /> */}
     </div>
   );
 };

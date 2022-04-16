@@ -4,19 +4,26 @@ import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import style from './headerBanner.module.scss';
 import { skipToSection } from '../../services/skipToSection';
+import { wysiwygToHtmlParser } from '../../services/utils';
 
 const onScrollClick = () => {
   skipToSection('about-me');
 };
 
-const HeaderBannerComponent = ({ bannerUrl }) => (
+const HeaderBannerComponent = ({ data }) => (
   <header className={style['header-banner']}>
     <div className={style['header-banner__content']}>
       <div className={style['header-banner__title-section']}>
-        <h1 className={style['header-banner__title']}>Alexandre Poupart</h1>
-        <h2 className={style['header-banner__subtitle']}>
-          Développeur Front-End <span>&#47;&#47;</span> Full-Stack
-        </h2>
+        <h1
+          className={style['header-banner__title']}
+          dangerouslySetInnerHTML={{ __html: wysiwygToHtmlParser(data?.title) }}
+        />
+        <h2
+          className={style['header-banner__subtitle']}
+          dangerouslySetInnerHTML={{
+            __html: wysiwygToHtmlParser(data?.description),
+          }}
+        />
       </div>
       <button
         type="button"
@@ -33,14 +40,20 @@ const HeaderBannerComponent = ({ bannerUrl }) => (
     <div
       className={style['header-banner__background']}
       style={{
-        backgroundImage: `url(${bannerUrl})`,
+        backgroundImage: `url(${data?.banner?.url})`,
       }}
     />
   </header>
 );
 
 HeaderBannerComponent.propTypes = {
-  bannerUrl: PropTypes.string.isRequired,
+  data: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    banner: PropTypes.shape({
+      url: PropTypes.string,
+    }).isRequired,
+  }).isRequired,
 };
 
 export default HeaderBannerComponent;

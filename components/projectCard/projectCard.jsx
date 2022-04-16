@@ -32,9 +32,12 @@ const ProjectCardComponent = ({ project, isLoading }) => {
         <div className={style['project-card__padding']} />
         <img
           className={style['project-card__image']}
-          src={project.data.image[0]?.url}
+          src={project.data.image?.url}
           loading="lazy"
-          alt={`Image designant le project: ${project.data.title}`}
+          alt={
+            project.data.image?.alt ||
+            `Image designant le project: ${project.data.title}`
+          }
           aria-hidden="true"
         />
         <div className={style['project-card__wrapper']}>
@@ -54,12 +57,10 @@ ProjectCardComponent.defaultProps = {
     data: {
       title: '',
       slug: '',
-      image: [
-        {
-          url: '',
-          id: '',
-        },
-      ],
+      image: {
+        url: '',
+        alt: '',
+      },
       relatedTechnologies: [
         {
           technology: {
@@ -79,12 +80,10 @@ ProjectCardComponent.propTypes = {
     data: PropTypes.shape({
       title: PropTypes.string.isRequired,
       slug: PropTypes.string.isRequired,
-      image: PropTypes.arrayOf(
-        PropTypes.shape({
-          url: PropTypes.string.isRequired,
-          id: PropTypes.string.isRequired,
-        })
-      ),
+      image: PropTypes.shape({
+        url: PropTypes.string.isRequired,
+        alt: PropTypes.string.isRequired,
+      }),
       relatedTechnologies: PropTypes.arrayOf(
         PropTypes.shape({
           technology: PropTypes.shape({

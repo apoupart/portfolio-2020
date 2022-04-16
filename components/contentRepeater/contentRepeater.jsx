@@ -3,10 +3,12 @@ import PropTypes from 'prop-types';
 import HeaderBannerComponent from '../headerBanner/headerBanner';
 import AboutMeComponent from '../aboutMe/aboutMe';
 import ProjectsSectionComponent from '../../sections/projects/projectSection';
+import ItemsList from '../itemsList/itemsList';
 
 const ContentRepeaterComponent = ({ data }) =>
   data?.slices.map((componentData) => {
     let component = <></>;
+    console.log('componentData', componentData);
     switch (componentData.slice_type) {
       case 'primary_header':
         component = <HeaderBannerComponent data={componentData.primary} />;
@@ -20,6 +22,14 @@ const ContentRepeaterComponent = ({ data }) =>
         break;
       case 'project_list':
         component = <ProjectsSectionComponent />;
+        break;
+      case 'items_list':
+        component = (
+          <ItemsList
+            title={componentData.primary.title}
+            items={componentData.items}
+          />
+        );
         break;
       default:
         console.log('components not found for', componentData.slice_type);

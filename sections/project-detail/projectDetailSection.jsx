@@ -22,9 +22,9 @@ const ProjectDetailSection = ({ data }) => {
       <section className={style['project-detail']}>
         <div className={style['project-detail__wrapper']}>
           <div className={style['project-detail__image-wrapper']}>
-            {data.image && data.image[0] && (
+            {data.image && data.image && (
               <img
-                src={data.image[0].url}
+                src={data.image.url}
                 className={style['project-detail__image']}
                 alt={`Quelqu'un navigant sur le projet ${data.title}`}
               />
