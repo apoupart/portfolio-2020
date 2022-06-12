@@ -28,28 +28,22 @@ const HeaderBannerComponent = ({ data }) => (
           }}
         />
       </div>
-      <button
-        type="button"
-        aria-hidden="true"
-        className={style['header-banner__button-icon-down']}
-        onClick={onScrollClick}
-      >
-        <FontAwesomeIcon
-          className={style['header-banner__icon-down']}
-          icon={faAngleDown}
-        />
-      </button>
     </div>
+    <button
+      type="button"
+      aria-hidden="true"
+      className={style['header-banner__button-icon-down']}
+      onClick={onScrollClick}
+    >
+      <FontAwesomeIcon
+        className={style['header-banner__icon-down']}
+        icon={faAngleDown}
+      />
+    </button>
     <ParallaxBanner
       layers={[{ image: data?.banner?.url, speed: -15 }]}
       className={style['header-banner__background']}
     />
-    {/* <div
-        className={style['header-banner__background']}
-        style={{
-          backgroundImage: `url(${data?.banner?.url})`,
-        }}
-      /> */}
   </header>
 );
 
