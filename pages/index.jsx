@@ -4,7 +4,6 @@ import Head from 'next/head';
 import { createClient } from '../prismicio';
 import ProjectContext from '../context/project-context';
 import ContentRepeaterComponent from '../components/contentRepeater/contentRepeater';
-import ItemsList from '../components/itemsList/itemsList';
 
 export async function getStaticProps({ previewData }) {
   const client = createClient({ previewData });
@@ -106,13 +105,6 @@ const Home = ({ page, projectsList, technologies }) => {
         {favicon}
       </Head>
       <ContentRepeaterComponent data={page?.data} />
-      {/* 
-      Legacy component with graphQL
-      <HeaderBannerComponent bannerUrl={data.content.banner.url} />
-      <AboutMeComponent catchPhrase={data.content.catch_phrase} />
-      <ProjectsSectionComponent />
-      <ItemsListSectionComponent /> */}
-      {/* <ItemsList title="bob" items="componentData.items" /> */}
     </div>
   );
 };
