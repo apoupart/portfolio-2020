@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { ParallaxBanner } from 'react-scroll-parallax';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import style from './headerBanner.module.scss';
@@ -16,7 +17,9 @@ const HeaderBannerComponent = ({ data }) => (
       <div className={style['header-banner__title-section']}>
         <h1
           className={style['header-banner__title']}
-          dangerouslySetInnerHTML={{ __html: wysiwygToHtmlParser(data?.title) }}
+          dangerouslySetInnerHTML={{
+            __html: wysiwygToHtmlParser(data?.title),
+          }}
         />
         <h2
           className={style['header-banner__subtitle']}
@@ -37,12 +40,16 @@ const HeaderBannerComponent = ({ data }) => (
         />
       </button>
     </div>
-    <div
+    <ParallaxBanner
+      layers={[{ image: data?.banner?.url, speed: -15 }]}
       className={style['header-banner__background']}
-      style={{
-        backgroundImage: `url(${data?.banner?.url})`,
-      }}
     />
+    {/* <div
+        className={style['header-banner__background']}
+        style={{
+          backgroundImage: `url(${data?.banner?.url})`,
+        }}
+      /> */}
   </header>
 );
 

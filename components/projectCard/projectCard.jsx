@@ -24,7 +24,7 @@ const ProjectCardComponent = ({ project, isLoading }) => {
       <button
         className={[
           style['project-card'],
-          style[`project-card--tech-${project.data.slug}`],
+          style[`project-card--tech-${project.data.slug || 'MISSING-SLUG'}`],
         ].join(' ')}
         type="button"
         data-technology={project.data.relatedTechnologies[0]?.technology?.uid}
@@ -79,10 +79,10 @@ ProjectCardComponent.propTypes = {
     uid: PropTypes.string.isRequired,
     data: PropTypes.shape({
       title: PropTypes.string.isRequired,
-      slug: PropTypes.string.isRequired,
+      slug: PropTypes.string,
       image: PropTypes.shape({
         url: PropTypes.string.isRequired,
-        alt: PropTypes.string.isRequired,
+        alt: PropTypes.string,
       }),
       relatedTechnologies: PropTypes.arrayOf(
         PropTypes.shape({

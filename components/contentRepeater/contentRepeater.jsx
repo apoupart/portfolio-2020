@@ -8,7 +8,6 @@ import ItemsList from '../itemsList/itemsList';
 const ContentRepeaterComponent = ({ data }) =>
   data?.slices.map((componentData) => {
     let component = <></>;
-    console.log('componentData', componentData);
     switch (componentData.slice_type) {
       case 'primary_header':
         component = <HeaderBannerComponent data={componentData.primary} />;
@@ -27,12 +26,13 @@ const ContentRepeaterComponent = ({ data }) =>
         component = (
           <ItemsList
             title={componentData.primary.title}
+            icon={componentData.primary.icon}
             items={componentData.items}
           />
         );
         break;
       default:
-        console.log('components not found for', componentData.slice_type);
+        console.warn('components not found for', componentData.slice_type);
         break;
     }
     return component;
