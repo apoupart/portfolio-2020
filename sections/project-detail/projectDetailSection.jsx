@@ -2,18 +2,14 @@
 import React from 'react';
 import Head from 'next/head';
 import PropTypes, { string, arrayOf } from 'prop-types';
-import ReactMarkdown from 'react-markdown';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
-import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
-import { PROJECT_DETAILS } from '../../gql/projectDetailsBySlug';
 import style from './projectDetailSection.module.scss';
 import TechnologyTagComponent from '../../components/technologyTag/technologyTag';
 import { wysiwygToHtmlParser } from '../../services/utils';
 
 const ProjectDetailSection = ({ data }) => {
   const content = wysiwygToHtmlParser(data?.description);
-  console.log('data', data);
   return (
     <>
       <Head>
