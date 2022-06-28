@@ -1,22 +1,36 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
-import App from 'next/app';
-import { ApolloProvider } from '@apollo/react-hooks';
+import React, { useState, useMemo } from 'react';
+import { ParallaxProvider } from 'react-scroll-parallax';
 
 import Head from 'next/head';
 import { config } from '@fortawesome/fontawesome-svg-core';
-import { withApollo } from '../libs/apollo';
-import '../services/fontAwesomeLibrairy';
 import '@fortawesome/fontawesome-svg-core/styles.css'; // Import the CSS
 import NavigationBarComponent from '../components/navigationBar/navigationBar';
+import ProjectContext from '../context/project-context';
+import '../services/fontAwesomeLibrairy';
 
 config.autoAddCss = false; // Tell Font Awesome to skip adding the CSS automatically since it's being imported above
 
-class MyApp extends App {
-  render() {
-    const { Component, pageProps, apollo, router } = this.props;
-    return (
-      <ApolloProvider client={apollo}>
+const MyApp = ({ Component, pageProps, router }) => {
+  const [projects, setProjects] = useState([]);
+  const [technologies, setTechnologies] = useState([]);
+  const [selectedTechnology, setTechnology] = useState('');
+  const value = useMemo(
+    () => ({
+      projects,
+      technologies,
+      selectedTechnology,
+      setProjects,
+      setTechnology,
+      setTechnologies,
+    }),
+    [projects, technologies, selectedTechnology]
+  );
+
+  return (
+    <ParallaxProvider>
+      <ProjectContext.Provider value={value}>
         <Head>
           <link rel="preconnect" href="https://fonts.gstatic.com" />
           <link
@@ -175,10 +189,11 @@ class MyApp extends App {
             `}
           </style>
         </>
-      </ApolloProvider>
-    );
-  }
-}
+      </ProjectContext.Provider>
+    </ParallaxProvider>
+  );
+};
 
 // Wraps all components in the tree with the data provider
-export default withApollo({ ssr: true })(MyApp);
+export default MyApp;
+// export default MyApp;

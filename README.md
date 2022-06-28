@@ -12,4 +12,4 @@ Create a .env file based on the exemple.
 
 ## Start the project
 
-To start the project locally, simply run `npm run dev`. Make sure that the GraphQl server is also up and running.
+To start the project locally, simply run `npm run dev`. Make sure that the HeadlessCMS server is also up and running.

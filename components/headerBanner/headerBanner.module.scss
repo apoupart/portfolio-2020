@@ -17,18 +17,14 @@
   &__content {
     display: block;
     width: 100%;
-    height: 100%;
     margin: 0 auto;
-    position: relative;
+    top: 60%;
+    position: absolute;
     z-index: 1;
 }
 
 &__title-section {
     background-color: rgba($color: $darkGray, $alpha: 0.6);
-    position: absolute;
-    top: 60%;
-    left: 0;
-    width: 100%;
     padding: 24px 0;
 }
 
@@ -87,23 +83,8 @@
   }
 
   &__background {
-    background-size: cover;
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
-    &::before {
-      content: "";
-      font-size: 20px;
-      top: 0px;
-      left: 0px;
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      background-image: url(../../assets/images/textureSlider.png);
-      mix-blend-mode: multiply;
-    }
   }
 
   &__button-icon-down {
@@ -116,6 +97,7 @@
     font-size: 3rem;
     background-color: transparent;
     border: none; 
+    z-index: 1;
   }
   &__icon-down {
     color: $white;

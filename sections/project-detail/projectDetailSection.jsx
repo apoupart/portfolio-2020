@@ -1,85 +1,84 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
-import { useQuery } from '@apollo/react-hooks';
 import Head from 'next/head';
-import PropTypes from 'prop-types';
-import ReactMarkdown from 'react-markdown';
+import PropTypes, { string, arrayOf } from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
-import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
-import { PROJECT_DETAILS } from '../../gql/projectDetailsBySlug';
 import style from './projectDetailSection.module.scss';
 import TechnologyTagComponent from '../../components/technologyTag/technologyTag';
+import { wysiwygToHtmlParser } from '../../services/utils';
 
-const ProjectDetailSection = ({ slug }) => {
-  const { loading, error, data } = useQuery(PROJECT_DETAILS, {
-    variables: { slug: slug || undefined },
-  });
-  if (error) return <h1>-Error loading data on projectLists Component</h1>;
-  if (loading) return <h1>Loading via projectLists...</h1>;
-
-  if (!data || !data.projects || !data.projects.length) {
-    return 'Missing info';
-  }
-  const projectData = data.projects[0];
+const ProjectDetailSection = ({ data }) => {
+  const content = wysiwygToHtmlParser(data?.description);
   return (
     <>
       <Head>
-        <title>Alexandre Poupart - Projet {projectData.title}</title>
+        <title>Alexandre Poupart - Projet {data.title}</title>
       </Head>
       <section className={style['project-detail']}>
         <div className={style['project-detail__wrapper']}>
           <div className={style['project-detail__image-wrapper']}>
-            {projectData.image && projectData.image[0] && (
+            {data.image && data.image && (
               <img
-                src={projectData.image[0].url}
+                src={data.image.url}
                 className={style['project-detail__image']}
-                alt={`Quelqu'un navigant sur le projet ${projectData.title}`}
+                alt={`Quelqu'un navigant sur le projet ${data.title}`}
               />
             )}
           </div>
           <div className={style['project-detail__content']}>
-            <h1 className={style['project-detail__title']}>
-              {projectData.title}
-            </h1>
-            <ReactMarkdown className={style['project-detail__description']}>
-              {projectData.description}
-            </ReactMarkdown>
+            <h1 className={style['project-detail__title']}>{data.title}</h1>
+            {content.map((element, key) => (
+              <div
+                key={`content-${key + 1}`}
+                className={style['project-detail__description']}
+                dangerouslySetInnerHTML={{ __html: element }}
+              />
+            ))}
+            {/* <ReactMarkdown>
+              {data && data.description && data.description.lenght
+                ? data?.description[0]?.text
+                : ''}
+            </ReactMarkdown> */}
             <ul className={style['project-detail__technology-list']}>
-              {projectData.technologies.map((technology) => (
-                <li
-                  key={technology.id}
-                  className={style['project-detail__technology-list-item']}
-                >
-                  <TechnologyTagComponent technology={technology} />
-                </li>
-              ))}
+              {data?.relatedTechnologies?.map(
+                (techno) =>
+                  techno && (
+                    <li
+                      key={techno?.id}
+                      className={style['project-detail__technology-list-item']}
+                    >
+                      <TechnologyTagComponent technology={techno} />
+                    </li>
+                  )
+              )}
             </ul>
-            {projectData.year && (
+            {data.years && (
               <p className={style['project-detail__technology-opt-data']}>
-                {projectData.year}
+                {data.years}
               </p>
             )}
-            {projectData.link && (
+            {data.link && (
               <p className={style['project-detail__technology-opt-data']}>
-                <FontAwesomeIcon icon={faExternalLinkAlt} />
-                <a
-                  href={`//${projectData.link}`}
+                {/* <FontAwesomeIcon icon={faExternalLinkAlt} /> */}
+                {/* <a
+                  href={`//${data.link}`}
                   rel="noreferrer"
                   target="_blank"
-                  title={`Site web du projet ${projectData.title}`}
+                  title={`Site web du projet ${data.title}`}
                 >
-                  {projectData.link}
-                </a>
+                  {data.link}
+                </a> */}
               </p>
             )}
-            {projectData.github && (
+            {data?.github?.url && (
               <p className={style['project-detail__technology-opt-data']}>
                 <FontAwesomeIcon icon={faGithub} />
                 <a
-                  href={`//${projectData.github}`}
+                  href={`//${data.github.url}`}
                   rel="noreferrer"
                   target="_blank"
-                  title={`Accéder au projet: ${projectData.title} sur github`}
+                  title={`Accéder au projet: ${data.title} sur github`}
                 >
                   Voir sur Github
                 </a>
@@ -93,11 +92,23 @@ const ProjectDetailSection = ({ slug }) => {
 };
 
 ProjectDetailSection.defaultProps = {
-  slug: '',
+  data: {
+    title: '',
+    description: [],
+  },
 };
 
 ProjectDetailSection.propTypes = {
-  slug: PropTypes.string,
+  data: PropTypes.shape({
+    title: PropTypes.string,
+    description: PropTypes.arrayOf(
+      PropTypes.shape({
+        type: string,
+        text: string,
+        spans: arrayOf(PropTypes.string),
+      })
+    ),
+  }),
 };
 
 export default ProjectDetailSection;

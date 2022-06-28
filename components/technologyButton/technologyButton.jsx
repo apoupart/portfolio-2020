@@ -10,13 +10,13 @@ const TechnologyButtonComponent = ({
   technology,
 }) => {
   const onClickButton = () => {
-    onClickEvent(technology.slug);
+    onClickEvent(technology);
   };
 
-  const icon = technology.icon_name ? (
+  const icon = technology.data.iconName ? (
     <FontAwesomeIcon
       className={style['technology-button__icon']}
-      icon={['fab', technology.icon_name]}
+      icon={['fab', technology.data.iconName]}
     />
   ) : (
     <FontAwesomeIcon
@@ -30,14 +30,14 @@ const TechnologyButtonComponent = ({
       type="button"
       className={[
         style['technology-button'],
-        selectedTechnology === technology.slug &&
+        selectedTechnology === technology.uid &&
           style['technology-button--is-active'],
       ].join(' ')}
       onClick={() => onClickButton()}
-      data-technology={technology.slug}
+      data-technology={technology.uid}
     >
       {icon}
-      {technology.name}
+      {technology?.data?.title || ''}
     </button>
   );
 };
@@ -51,9 +51,11 @@ TechnologyButtonComponent.propTypes = {
   onClickEvent: PropTypes.func,
   selectedTechnology: PropTypes.string,
   technology: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    slug: PropTypes.string.isRequired,
-    icon_name: PropTypes.string,
+    uid: PropTypes.string.isRequired,
+    data: PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      iconName: PropTypes.string,
+    }),
   }).isRequired,
 };
 

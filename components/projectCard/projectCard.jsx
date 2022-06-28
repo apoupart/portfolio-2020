@@ -18,29 +18,32 @@ const ProjectCardComponent = ({ project, isLoading }) => {
   }
   return (
     <Link
-      href="/projets/[slug]"
-      as={`/projets/${encodeURIComponent(project.slug)}`}
+      href="/projets/[uid]"
+      as={`/projets/${encodeURIComponent(project.uid)}`}
     >
       <button
         className={[
           style['project-card'],
-          style[`project-card--tech-${project.slug}`],
+          style[`project-card--tech-${project.data.slug || 'MISSING-SLUG'}`],
         ].join(' ')}
         type="button"
-        data-technology={project.technologies[0].slug}
+        data-technology={project.data.relatedTechnologies[0]?.technology?.uid}
       >
         <div className={style['project-card__padding']} />
         <img
           className={style['project-card__image']}
-          src={project.image[0].url}
+          src={project.data.image?.url}
           loading="lazy"
-          alt={`Image designant le project: ${project.title}`}
+          alt={
+            project.data.image?.alt ||
+            `Image designant le project: ${project.data.title}`
+          }
           aria-hidden="true"
         />
         <div className={style['project-card__wrapper']}>
           <p className={style['project-card__title']}>
             <span className="visually-hidden">Visiter le projets: </span>
-            {project.title}
+            {project.data.title}
           </p>
         </div>
       </button>
@@ -50,38 +53,46 @@ const ProjectCardComponent = ({ project, isLoading }) => {
 
 ProjectCardComponent.defaultProps = {
   project: {
-    title: '',
-    slug: '',
-    image: [
-      {
+    uid: '',
+    data: {
+      title: '',
+      slug: '',
+      image: {
         url: '',
-        id: '',
+        alt: '',
       },
-    ],
-    technologies: [
-      {
-        slug: '',
-      },
-    ],
+      relatedTechnologies: [
+        {
+          technology: {
+            slug: '',
+            uid: '',
+          },
+        },
+      ],
+    },
   },
   isLoading: false,
 };
 
 ProjectCardComponent.propTypes = {
   project: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    slug: PropTypes.string.isRequired,
-    image: PropTypes.arrayOf(
-      PropTypes.shape({
+    uid: PropTypes.string.isRequired,
+    data: PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      slug: PropTypes.string,
+      image: PropTypes.shape({
         url: PropTypes.string.isRequired,
-        id: PropTypes.string.isRequired,
-      })
-    ),
-    technologies: PropTypes.arrayOf(
-      PropTypes.shape({
-        slug: PropTypes.string.isRequired,
-      })
-    ),
+        alt: PropTypes.string,
+      }),
+      relatedTechnologies: PropTypes.arrayOf(
+        PropTypes.shape({
+          technology: PropTypes.shape({
+            uid: PropTypes.string,
+            slug: PropTypes.string,
+          }),
+        })
+      ),
+    }),
   }),
   isLoading: PropTypes.bool,
 };

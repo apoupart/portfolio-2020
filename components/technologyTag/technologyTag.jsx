@@ -5,28 +5,30 @@ import { faCode } from '@fortawesome/free-solid-svg-icons';
 import style from './technologyTag.module.scss';
 
 const TechnologyTagComponent = ({ technology }) => {
-  const icon = technology.icon_name ? (
+  const icon = technology?.data?.iconName ? (
     <FontAwesomeIcon
       className={style['technology-tag__icon']}
-      icon={['fab', technology.icon_name]}
+      icon={['fab', technology?.data?.iconName]}
     />
   ) : (
     <FontAwesomeIcon className={style['technology-tag__icon']} icon={faCode} />
   );
 
   return (
-    <div className={style['technology-tag']} data-technology={technology.slug}>
+    <div className={style['technology-tag']} data-technology={technology?.uid}>
       {icon}
-      {technology.name}
+      {technology?.data?.title}
     </div>
   );
 };
 
 TechnologyTagComponent.propTypes = {
   technology: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    slug: PropTypes.string.isRequired,
-    icon_name: PropTypes.string,
+    uid: PropTypes.string.isRequired,
+    data: PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      iconName: PropTypes.string,
+    }),
   }).isRequired,
 };
 

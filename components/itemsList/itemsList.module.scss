@@ -1,0 +1,112 @@
+@import "../../assets/scss/variable";
+@import "../../assets/scss/mixins";
+@import "../../assets/scss/function";
+
+.knowledge {
+    $this: &;
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+    &:nth-child(2n + 1) {
+      transform: scaleX(-1);
+    }
+    &__banner {
+        position: absolute;
+        transform: rotate(25deg);
+        width: 220%;
+        top: 0;
+        left: -110%;
+        height: 80vh;
+        background-color: red;
+
+        &::after {
+          position: absolute;
+          width: 100%;
+          height: 40px;
+          bottom: -10px;
+          left: 0;
+          font-size: rem(30);
+          content: "";
+          background-color: $black;
+          opacity: 0.7;
+        }
+        
+        @each $property, $color in $techColors {
+          $i: index(($techColors), ($property $color));
+          #{$this}:nth-child(#{$i}) & {
+              background-color: $color;
+              svg[class*="main-icon"] {
+                  color: darken($color, 15);
+              }
+          }
+      }
+    }
+    &__title {
+        margin-top: 30vh;
+        @include font-size(24px);
+        @include line-height(28px);
+        @include media(medium) {
+          @include font-size(38px);
+          @include line-height(42px);
+        }
+        @include media(large) {
+          margin-top: 20vh;
+          @include font-size(48px);
+          @include line-height(54px);
+        }
+    }
+    &__items {
+      margin-top: 200px;
+      left: 0;
+      @include font-size(16px);
+      @include line-height(28px);
+      @include media(medium) {
+        @include font-size(20px);
+        @include line-height(32px);
+      }
+      @include media(large) {
+        margin-top: 20vh;
+        @include font-size(24px);
+        @include line-height(38px);
+      }
+    }
+    &__main-icon {
+      position: absolute;
+      margin-top: calculateRem(80px);
+      color: darken($color: $darkBlue, $amount: 10);
+      @include font-size(240px);
+      opacity: 0.6;
+      right: calculateRem(-90px);
+      @include media(medium) {
+        right: calculateRem(-50px);
+      }
+      @include media(large) {
+        right: 0;
+      }
+      #{$this}:nth-child(2n + 1) & {
+        @include media(medium) {
+          right: inherit;
+          left: calculateRem(-50px);
+        }
+        @include media(large) {
+          left: 0;
+        }
+      }
+    }
+    &__inner {
+      margin: 0 auto;
+      padding: 0 calculateRem(20px);
+      width: 100%;
+      max-width: calculateRem($contentWidth);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      z-index: 1;
+      #{$this}:nth-child(2n + 1) & {
+        transform: scaleX(-1);
+        @include media(medium) {
+          align-items: flex-end;
+        }
+      }
+    }
+}
