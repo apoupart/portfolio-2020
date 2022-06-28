@@ -41,14 +41,17 @@ const ProjectDetailSection = ({ data }) => {
                 : ''}
             </ReactMarkdown> */}
             <ul className={style['project-detail__technology-list']}>
-              {data?.relatedTechnologies?.map((group) => (
-                <li
-                  key={group?.technology.id}
-                  className={style['project-detail__technology-list-item']}
-                >
-                  <TechnologyTagComponent technology={group?.technology} />
-                </li>
-              ))}
+              {data?.relatedTechnologies?.map(
+                (techno) =>
+                  techno && (
+                    <li
+                      key={techno?.id}
+                      className={style['project-detail__technology-list-item']}
+                    >
+                      <TechnologyTagComponent technology={techno} />
+                    </li>
+                  )
+              )}
             </ul>
             {data.years && (
               <p className={style['project-detail__technology-opt-data']}>
@@ -68,11 +71,11 @@ const ProjectDetailSection = ({ data }) => {
                 </a> */}
               </p>
             )}
-            {data.github && (
+            {data?.github?.url && (
               <p className={style['project-detail__technology-opt-data']}>
                 <FontAwesomeIcon icon={faGithub} />
                 <a
-                  href={`//${data.github}`}
+                  href={`//${data.github.url}`}
                   rel="noreferrer"
                   target="_blank"
                   title={`Accéder au projet: ${data.title} sur github`}

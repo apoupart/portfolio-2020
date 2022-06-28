@@ -5,6 +5,16 @@ import ProjectDetailSection from '../../sections/project-detail/projectDetailSec
 export async function getStaticProps({ params, previewData }) {
   const client = createClient({ previewData });
   const page = await client.getByUID('projects', params.uid);
+  const technologyDetails = page.data.relatedTechnologies.map((techno) => {
+    if (techno?.technology?.id) {
+      return client.getByID(techno.technology.id);
+    }
+    return null;
+  });
+
+  const technoFetch = await Promise.all(technologyDetails);
+  page.data.relatedTechnologies = technoFetch;
+
   return {
     props: { page },
   };
