@@ -42,7 +42,7 @@ const MyApp = ({ Component, pageProps, router }) => {
         <Component {...pageProps} />
         <>
           {/* Reset css */}
-          <style jsx global>
+          <style>
             {`
               html,
               body,
