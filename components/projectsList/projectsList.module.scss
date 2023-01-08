@@ -16,4 +16,17 @@
     @include media(large) {
         grid-template-columns: repeat(3, 1fr);
     }
+    &:has(li:hover) {
+        li:not(:hover) {
+            opacity: 0.3;
+        }
+    }
+    > li {
+        opacity: 1;
+        transition: opacity 0.25s ease-in;
+        &:focus,
+        &:hover {
+            opacity: 1;
+        }
+    }
 }
