@@ -35,15 +35,13 @@ const NavigationBarComponent = ({ isHome }) => {
       <div className={style['navigation-bar__content']}>
         {isHome && <MainNavigationComponent />}
         {!isHome && (
-          <Link href="/">
-            <a href="/" className={style['navigation-bar__back-button']}>
-              <FontAwesomeIcon
-                aria-hidden="true"
-                className={style['navigation-bar__icon-down']}
-                icon={faArrowLeft}
-              />
-              <p>Retour</p>
-            </a>
+          <Link href="/" className={style['navigation-bar__back-button']}>
+            <FontAwesomeIcon
+              aria-hidden="true"
+              className={style['navigation-bar__icon-down']}
+              icon={faArrowLeft}
+            />
+            <p>Retour</p>
           </Link>
         )}
       </div>

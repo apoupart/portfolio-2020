@@ -74,14 +74,14 @@ const ProjectDetailSection = ({ data }) => {
             {data?.github?.url && (
               <p className={style['project-detail__technology-opt-data']}>
                 <FontAwesomeIcon icon={faGithub} />
-                <a
+                {/* <a
                   href={`//${data.github.url}`}
                   rel="noreferrer"
                   target="_blank"
                   title={`Accéder au projet: ${data.title} sur github`}
                 >
                   Voir sur Github
-                </a>
+                </a> */}
               </p>
             )}
           </div>

@@ -2,6 +2,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useState, useMemo } from 'react';
 import { ParallaxProvider } from 'react-scroll-parallax';
+import '../assets/scss/reset.scss';
 
 import Head from 'next/head';
 import { config } from '@fortawesome/fontawesome-svg-core';
@@ -38,10 +39,8 @@ const MyApp = ({ Component, pageProps, router }) => {
             rel="stylesheet"
           />
         </Head>
-        <NavigationBarComponent isHome={router.route && router.route === '/'} />
-        <Component {...pageProps} />
-        <>
-          {/* Reset css */}
+        {/* <>
+          Reset css 
           <style>
             {`
               html,
@@ -133,7 +132,6 @@ const MyApp = ({ Component, pageProps, router }) => {
                 vertical-align: baseline;
                 box-sizing: border-box;
               }
-              /* HTML5 display-role reset for older browsers */
               article,
               aside,
               details,
@@ -188,7 +186,9 @@ const MyApp = ({ Component, pageProps, router }) => {
               }
             `}
           </style>
-        </>
+        </> */}
+        <NavigationBarComponent isHome={router.route && router.route === '/'} />
+        <Component {...pageProps} />
       </ProjectContext.Provider>
     </ParallaxProvider>
   );
