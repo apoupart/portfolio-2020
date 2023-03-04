@@ -3,6 +3,7 @@
  */
 
 import fontawesome from '@fortawesome/fontawesome';
+const { library, config } = require('@fortawesome/fontawesome-svg-core');
 import {
   faCss3Alt,
   faHtml5,
@@ -32,7 +33,7 @@ import {
 /**
  * Add font awesome icon to the main library.
  */
-fontawesome.library.add(
+library.add(
   faPhp,
   faWordpressSimple,
   faUnity,
