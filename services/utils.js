@@ -1,7 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 export const hasWindowAvailable = () => typeof window !== 'undefined' && window;
 
-export const wysiwygToHtmlParser = (content) =>
+export const wysiwygToHtmlParser = (content, isSeparated = false) =>
   content.map((paragraph, index) => {
     const originalText = paragraph?.text || '';
     let newText = originalText;
@@ -14,5 +14,16 @@ export const wysiwygToHtmlParser = (content) =>
         );
       });
     }
-    return `<p key="paragraph-${index + 1}">${newText}</p>`;
+    return (<p key="paragraph-${index + 1}">{addSpanToText(newText, isSeparated)}</p>);
   });
+
+const addSpanToText = (content, isSeparated) => {
+  if (!isSeparated) {
+    return content;
+  }
+
+  const contentArray = content.split(' ');
+  const contentMap = contentArray.map(text => (<><span>{text}</span> </>));
+
+  return contentMap;
+}

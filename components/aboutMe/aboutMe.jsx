@@ -8,7 +8,7 @@ const AboutMeComponent = ({ description }) => {
   const lineNumber = lineNumberArray.map((data, index) => (
     <li key={`line-${index}`}>{index + 1}</li>
   ));
-  const content = wysiwygToHtmlParser(description);
+  const content = wysiwygToHtmlParser(description, true);
   return (
     <div className={style['about-me']} id="about-me">
       <h3 className="visually-hidden">À propos de moi</h3>
@@ -21,8 +21,10 @@ const AboutMeComponent = ({ description }) => {
           {content.map((element, key) => (
             <div
               key={`content-${key + 1}`}
-              dangerouslySetInnerHTML={{ __html: element }}
-            />
+            >
+              {element}
+              {/* dangerouslySetInnerHTML={{ __html: element }} */}
+            </div>
           ))}
         </div>
       </div>

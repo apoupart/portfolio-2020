@@ -4,6 +4,7 @@ import Head from 'next/head';
 import { createClient } from '../prismicio';
 import ProjectContext from '../context/project-context';
 import ContentRepeaterComponent from '../components/contentRepeater/contentRepeater';
+import CursorComponent from '../components/cursor/cursor';
 
 export async function getStaticProps({ previewData }) {
   const client = createClient({ previewData });
@@ -104,6 +105,7 @@ const Home = ({ page, projectsList, technologies }) => {
         <title>Alexandre Poupart - Developpeur Front-End // Portfolio</title>
         {favicon}
       </Head>
+      <CursorComponent />
       <ContentRepeaterComponent data={page?.data} />
     </div>
   );
