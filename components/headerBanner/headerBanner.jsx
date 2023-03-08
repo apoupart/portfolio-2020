@@ -5,7 +5,7 @@ import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import style from './headerBanner.module.scss';
 import { skipToSection } from '../../services/skipToSection';
-import { wysiwygToHtmlParser } from '../../services/utils';
+import { addSpanToText, wysiwygToHtmlParser, wysiwygToText } from '../../services/utils';
 import { useOnScreen } from '../../hooks/useOnScreen';
 
 const onScrollClick = () => {
@@ -18,20 +18,17 @@ const HeaderBannerComponent = ({ data }) => {
   return (
   <header className={style['header-banner']}>
     <div className={style['header-banner__content']}>
-      <div className={style['header-banner__title-section']} ref={elementRef}>
+      <div className={`${style['header-banner__title-section']}  ${ isOnScreen && style['header-banner__title-section--visible']}`} ref={elementRef}>
+        <p>Bonjour je suis</p>
         <h1
-          className={`${style['header-banner__title']} ${ isOnScreen && style['header-banner__title--visible']}`}
-          // dangerouslySetInnerHTML={{
-          //   __html: wysiwygToHtmlParser(data?.title, true),
-          // }}
+          className={style['header-banner__title']}
         >
-          {[wysiwygToHtmlParser(data?.title, true)]}
+          {wysiwygToText(data?.title || '')}
           </h1>
         <h2
           className={style['header-banner__subtitle']}
-        >
-          {[wysiwygToHtmlParser(data?.description, true)]}
-        </h2>
+          dangerouslySetInnerHTML={{__html: wysiwygToHtmlParser(data?.description, false)}}
+        />
       </div>
     </div>
     <button
