@@ -4,7 +4,8 @@
 
 .header-banner {
   width: 100%;
-  height: calc(100vh - 52px);
+  height: 100vh;
+  height: 100dvh;
   min-height: -webkit-fill-available;
   position: relative;
   display: block;
@@ -12,7 +13,6 @@
 
   @include media(large) {
     min-height: initial;
-    height: 100vh;
   }
 
   &__content {
@@ -21,8 +21,11 @@
     margin: 0 auto;
     position: absolute;
     z-index: 1;
-    top: 100vh;
-    translate: 0 -120%;
+    top: 50dvh;
+    translate: 0 -140%;
+    @include media(large) {
+      top: 80dvh;
+    }
   }
 
   &__title-section {
@@ -31,14 +34,14 @@
     margin: 0 auto;
 
 
-    > * {
+    >* {
       transform: translate(0, 40%);
       transition: all 0.25s ease-in-out 0.5s;
       opacity: 0;
     }
 
     &--visible {
-      > * {
+      >* {
         opacity: 1;
         transform: translate(0, 0%);
 
@@ -52,14 +55,28 @@
   }
 
   &__surtitle {
-    @include font-size(28px);
-    @include line-height(30px);
+    @include font-size(16px);
+    @include line-height(20px);
+    margin-bottom: 8px;
+    color: $lightGray;
+    
+    @include media(medium) {
+      @include font-size(24px);
+      @include line-height(28px);
+      margin-bottom: 12px;
+    }
+
+    @include media(large) {
+      @include font-size(28px);
+      @include line-height(30px);
+    }
   }
 
   &__title {
     @include font-size(28px);
     @include line-height(30px);
     letter-spacing: 0.3px;
+    margin-bottom: 4px;
     text-shadow: 0px 0px 8px rgba($color: $black, $alpha: 0.6);
     font-weight: 700;
     position: relative;
@@ -81,25 +98,14 @@
     }
   }
 
-  &__background {
-    width: 100%;
-    height: 100%;
-  }
-
 
   &__subtitle {
-    @include font-size(14px);
-    @include line-height(20px);
+    @include font-size(20px);
+    @include line-height(30px);
     margin: 0 auto;
-    font-weight: 700;
+    font-weight: 500;
     text-shadow: 0px 0px 8px rgba($color: $black, $alpha: 0.6);
     position: relative;
-
-    @include media(small) {
-      letter-spacing: 0.4px;
-      @include font-size(16px);
-      @include line-height(22px);
-    }
 
     @include media(medium) {
       letter-spacing: 0.3px;
@@ -139,22 +145,6 @@
     animation-fill-mode: both;
     animation-duration: 2s;
     animation-name: bounce;
-  }
-}
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-    left: -80px;
-  }
-
-  40% {
-    opacity: 0.7;
-  }
-
-  100% {
-    opacity: 1;
-    left: 0;
   }
 }
 
