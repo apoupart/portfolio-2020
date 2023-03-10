@@ -5,17 +5,16 @@
 .cursor {
     overflow: hidden;
     border-radius: 100%;
-    width: 30vw;
-    height: 30vw;
+    width: 20px;
+    height: 20px;
     position: absolute;
     transform: translate(-50%, -50%);
-    background: linear-gradient(90deg, rgba(172,72,68,1) 0%, rgba(224,119,20,1) 35%, rgba(97,154,184,1) 100%);
-    animation: cursor 10s infinite;
+    transition: all 0.25s ease-in-out;
+    border: 2px solid $white;
     
     &__wrapper {
         pointer-events: none;
-        opacity: 0.7;
-        filter: blur(90px);
+        opacity: 1;
         position: fixed;
         top: 0;
         left: 0;
@@ -23,27 +22,25 @@
         height: 100%;
         z-index: 1;
         mix-blend-mode: soft-light;
+        display: none;
+        @include media(large) {
+            display: block;
+        }
     }
 
-}
+    &--pressure-0 {
+        width: 20px;
+        height: 20px;
+    }
 
-@keyframes cursor {
-    0% {
-        background: linear-gradient(90deg, rgba(172,72,68,1) 0%, rgba(224,119,20,1) 35%, rgba(97,154,184,1) 100%);
-        transform: translate(-50%, -50%) scale(1) rotate(0deg);
-        background-size: 200%;
-        background-position: 0;
+    &--pressure-50 {
+        width: 40px;
+        height: 40px;
     }
     
-    50% {
-        // background: linear-gradient(90deg, rgba(172,72,68,1) 24%, rgba(224,119,20,1) 41%, rgba(97,154,184,1) 58%);
-        transform: translate(-55%, -55%) scale(1.2) rotate(180deg);
-        background-position: 100%;
-        scale: 1.2;
+    &--pressure-100 {
+        width: 50px;
+        height: 50px;
     }
-    
-    100% {
-        background-position: 0;
-        transform: translate(-50%, -50%) scale(1) rotate(360deg);
-    }
+
 }
