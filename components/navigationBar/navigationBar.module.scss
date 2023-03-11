@@ -3,7 +3,8 @@
 @import "../../assets/scss/function";
 
 .navigation-bar {
-    background-color: darken($darkBlue, 5);
+    padding-top: 0px;
+    // background-color: darken($darkBlue, 5);
     box-shadow: 0 0 6px rgba($color: $black, $alpha: 0.8);
     position: fixed;
     width: 100%;
@@ -11,16 +12,40 @@
     left: 0;
     z-index: 10;
     transform: translate(0, -100px);
-    transition: transform 0.25s ease-in 0.2s;
+    transition: all 0.25s ease-in 0.2s;
+    overflow: hidden;
+    
+    &::before {
+        top: 0;
+        left: 0;
+        position: absolute;
+        z-index: 1;
+        width: 120%;
+        height: 120%;
+        content: "";
+        @include font-size(50px);
+        background-color: rgba($color: $darkBlue, $alpha: 0.9);
+        backdrop-filter: blur(10px);
+    }
+    
+    &--top {
+        box-shadow: none;
+        padding-top: 40px;
+    }
+
     &--scroll-up {
         transform: translate(0, 0);
     }
+
     &__content {
+        position: relative;
+        z-index: 1;
         display: block;
         margin: 0 auto;
         max-width: calculateRem($contentWidth);
         padding: 0 calculateRem(20px);
     }
+
     &__back-button {
         display: inline-block;
         padding: 18px 0;
@@ -28,28 +53,34 @@
         transition: all 0.25s ease-in;
         cursor: pointer;
         position: relative;
+
         &:focus,
         &:hover {
             color: $lightGray;
             padding-right: 6px;
+
             p {
                 padding-left: 14px;
             }
         }
+
         &:focus,
         &:active {
             top: 1px;
             left: -1px;
         }
+
         p {
             display: none;
             padding-left: 20px;
             color: currentColor;
             transition: all 0.25s ease-in;
+
             @include media(medium) {
                 display: inline-block;
             }
         }
+
         svg {
             color: currentColor;
         }

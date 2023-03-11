@@ -13,9 +13,9 @@ const AboutMeComponent = ({ description }) => {
   ));
   const content = wysiwygToHtmlParser(description, true);
   return (
-    <div className={style['about-me']} id="about-me">
+    <div className={style['about-me']} id="about-me"  ref={elementRef}>
       <h3 className="visually-hidden">À propos de moi</h3>
-      <div className={`${style['about-me__wrapper']} ${isOnScreen && style['about-me__wrapper--visible']}`} ref={elementRef}>
+      <div className={`${style['about-me__wrapper']} ${isOnScreen && style['about-me__wrapper--visible']}`}>
         <div className={style['about-me__dots']} aria-hidden="true" />
         <div className={style['about-me__content']}>
           <ul className={style['about-me__sideline']} aria-hidden="true">

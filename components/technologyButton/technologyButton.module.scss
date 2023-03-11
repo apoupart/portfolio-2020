@@ -16,23 +16,31 @@
     cursor: pointer;
     display: flex;
     align-items: center;
+
     &:hover,
     &:focus {
         background-color: rgba($color: $gray, $alpha: 0.3);
     }
-    @each $pointer, $bgcolor in $techColors {
+
+    @each $pointer,
+    $bgcolor in $techColors {
         &[data-technology="#{$pointer}"] {
             border: 2px solid $bgcolor;
+
             &:hover,
             &:focus {
                 background-color: rgba($color: $bgcolor, $alpha: 0.3);
             }
         }
     }
+
     &--is-active {
-        @each $pointer, $bgcolor in $techColors {
+
+        @each $pointer,
+        $bgcolor in $techColors {
             &[data-technology="#{$pointer}"] {
                 background: $bgcolor;
+
                 &:hover,
                 &:focus {
                     background-color: darken($bgcolor, 5);
@@ -40,8 +48,10 @@
             }
         }
     }
+
     &__icon {
         width: 1.2rem;
         padding-right: 0.5rem;
+        pointer-events: none;
     }
 }

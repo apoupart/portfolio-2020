@@ -9,9 +9,9 @@
     height: 20px;
     position: absolute;
     transform: translate(-50%, -50%);
-    transition: all 0.25s ease-in-out;
+    transition: all 0.5s cubic-bezier(.68, -0.55, .07, 2.16);
     border: 2px solid $white;
-    
+
     &__wrapper {
         pointer-events: none;
         opacity: 1;
@@ -23,6 +23,7 @@
         z-index: 1;
         mix-blend-mode: soft-light;
         display: none;
+
         @include media(large) {
             display: block;
         }
@@ -37,10 +38,15 @@
         width: 40px;
         height: 40px;
     }
-    
+
     &--pressure-100 {
         width: 50px;
         height: 50px;
+    }
+
+    &--is-big {
+        width: 70px;
+        height: 70px;
     }
 
 }

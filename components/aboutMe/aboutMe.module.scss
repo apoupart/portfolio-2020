@@ -3,6 +3,7 @@
 @import "../../assets/scss/function";
 
 .about-me {
+    margin-top: 10px;
     $this: &;
     display: block;
     background-color: $darkBlue;
@@ -30,15 +31,15 @@
         border: 2px solid rgba($color: $white, $alpha: 0.5);
         opacity: 0;
         transform: translate(0, 200px);
-        transition: translate 0.25s ease-in 0.15s, opacity 0.4s ease-in;
-
+        transition: none;
+        
         @include media(medium) {
             border-radius: 15px;
             @include font-size(18px);
             padding: calculateRem(30px) calculateRem(40px);
             margin: 0 calculateRem(20px);
         }
-
+        
         @include media(large) {
             margin: 0 auto;
             border-radius: 20px;
@@ -46,10 +47,11 @@
             border: 2px solid $white;
             padding: calculateRem(40px) calculateRem(60px);
         }
-
+        
         &--visible {
             opacity: 1;
             transform: translate(0, 0);
+            transition: transform 0.25s ease-in 0.15s, opacity 0.4s ease-in;
         }
     }
 

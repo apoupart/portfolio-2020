@@ -9,6 +9,8 @@ import MainNavigationComponent from '../mainNavigation/mainNavigation';
 
 const NavigationBarComponent = ({ isHome }) => {
   const [isScrollingUp, setScrollingUp] = useState(true);
+  const [isTopOfPage, setIsTopOfAPage] = useState(true);
+  
   let lastYPos = 0;
 
   useEffect(() => {
@@ -17,6 +19,7 @@ const NavigationBarComponent = ({ isHome }) => {
         lastYPos >= window?.scrollY || window?.scrollY <= window.innerHeight
       );
       lastYPos = window?.scrollY || lastYPos;
+      setIsTopOfAPage(lastYPos < 100);
     }
 
     if (hasWindowAvailable) {
@@ -25,11 +28,15 @@ const NavigationBarComponent = ({ isHome }) => {
     return () => window.removeEventListener('scroll', handleWindowScroll);
   }, []);
 
+
+  console.log('lastYPos', lastYPos);
+
   return (
     <nav
       className={[
         style['navigation-bar'],
         isScrollingUp && style['navigation-bar--scroll-up'],
+        isTopOfPage && style['navigation-bar--top'],
       ].join(' ')}
     >
       <div className={style['navigation-bar__content']}>

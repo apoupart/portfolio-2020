@@ -4,15 +4,20 @@ import style from './cursor.module.scss';
 const CursorComponent = () => {
   const cursorElement = useRef(null);
   const [pressure, setPressure] = useState(0);
+  const [nearButton, setIsNearButton] = useState(false);
 
   useEffect(() => {
     window.document.body.onpointermove = event => {
       const {clientX, clientY} = event;
+      console.log('event', event.target?.tagName);
       cursorElement.current?.animate({
         left: `${clientX}px`,
         top: `${clientY}px`,
       }, {duration: 1800, fill: 'forwards'});
+
+      const isNearButton = event?.target?.tagName === 'BUTTON';
       setPressure(event.pressure * 100 || 0);
+      setIsNearButton(isNearButton);
     }
   }, []);
 
@@ -20,7 +25,7 @@ const CursorComponent = () => {
 
   return (
     <div className={style['cursor__wrapper']}>
-      <div className={`${style['cursor']} ${style[`cursor--pressure-${pressure}`]}`}  ref={cursorElement} />
+      <div className={`${style['cursor']} ${style[`cursor--pressure-${pressure}`]} ${nearButton && style['cursor--is-big']}`}  ref={cursorElement} />
     </div>
   );
 }
