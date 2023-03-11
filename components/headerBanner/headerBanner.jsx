@@ -1,15 +1,10 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
-import { ParallaxBanner } from 'react-scroll-parallax';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import style from './headerBanner.module.scss';
 import { skipToSection } from '../../services/skipToSection';
-import {
-  addSpanToText,
-  wysiwygToHtmlParser,
-  wysiwygToText,
-} from '../../services/utils';
+import { wysiwygToHtmlParser, wysiwygToText } from '../../services/utils';
 import { useOnScreen } from '../../hooks/useOnScreen';
 
 const onScrollClick = () => {
@@ -18,17 +13,27 @@ const onScrollClick = () => {
 
 const HeaderBannerComponent = ({ data }) => {
   const elementRef = useRef(null);
+  const [hasPassedOnScreen, setPassed] = useState(false);
   const isOnScreen = useOnScreen(elementRef);
+
+  console.log('data', data);
+
+  useEffect(() => {
+    if (!hasPassedOnScreen && isOnScreen) {
+      setPassed(true);
+    }
+  }, [isOnScreen]);
+
   return (
     <header className={style['header-banner']}>
       <div className={style['header-banner__content']}>
         <div
           className={`${style['header-banner__title-section']}  ${
-            isOnScreen && style['header-banner__title-section--visible']
+            hasPassedOnScreen && style['header-banner__title-section--visible']
           }`}
           ref={elementRef}
         >
-          <p className={style['header-banner__surtitle']}>Bonjour je suis</p>
+          <p className={style['header-banner__surtitle']}>Bonjour, je suis</p>
           <h1 className={style['header-banner__title']}>
             {wysiwygToText(data?.title || '')}
           </h1>
@@ -38,6 +43,7 @@ const HeaderBannerComponent = ({ data }) => {
               __html: wysiwygToHtmlParser(data?.description, false),
             }}
           />
+          <a href={data?.file?.url} className={style['header-banner__cv']} target="_blank" aria-label="Télécharger mon curriculum vitae">Curriculum Vitae</a>
         </div>
       </div>
       <button
@@ -51,10 +57,6 @@ const HeaderBannerComponent = ({ data }) => {
           icon={faAngleDown}
         />
       </button>
-      <ParallaxBanner
-        layers={[{ image: data?.banner?.url, speed: -15 }]}
-        className={style['header-banner__background']}
-      />
     </header>
   );
 };

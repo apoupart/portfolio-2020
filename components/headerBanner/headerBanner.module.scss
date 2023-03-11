@@ -22,7 +22,8 @@
     position: absolute;
     z-index: 1;
     top: 50dvh;
-    translate: 0 -140%;
+    translate: 0 -100%;
+
     @include media(large) {
       top: 80dvh;
     }
@@ -59,7 +60,7 @@
     @include line-height(20px);
     margin-bottom: 8px;
     color: $lightGray;
-    
+
     @include media(medium) {
       @include font-size(24px);
       @include line-height(28px);
@@ -106,14 +107,16 @@
     font-weight: 500;
     text-shadow: 0px 0px 8px rgba($color: $black, $alpha: 0.6);
     position: relative;
-
+    margin-bottom: 20px;
+    
     @include media(medium) {
       letter-spacing: 0.3px;
       @include font-size(20px);
       @include line-height(24px);
     }
-
+    
     @include media(large) {
+      margin-bottom: 24px;
       letter-spacing: 0.7px;
       @include font-size(48px);
       @include line-height(54px);
@@ -121,6 +124,24 @@
 
     span {
       color: $orange;
+    }
+  }
+
+  &__cv {
+    color: $white;
+    border-radius: 4px;
+    box-shadow: 0 0 4px $black;
+    border: none;
+    padding: 0.75rem 1rem;
+    @include font-size(14px);
+    margin-right: 1rem;
+    border: 2px solid $orange;
+    background-color: transparent;
+    transition: background 0.1s ease-in, transform 0.25s ease-in, opacity 0.25s ease-in;
+
+    &:hover,
+    &:focus {
+      background-color: rgba($color: $orange, $alpha: 0.3);
     }
   }
 
