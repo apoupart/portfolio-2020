@@ -4,6 +4,7 @@ import HeaderBannerComponent from '../headerBanner/headerBanner';
 import AboutMeComponent from '../aboutMe/aboutMe';
 import ProjectsSectionComponent from '../../sections/projects/projectSection';
 import ItemsList from '../itemsList/itemsList';
+import SkillList from '../skillList/skillList';
 
 const ContentRepeaterComponent = ({ data }) =>
   data?.slices.map((componentData) => {
@@ -28,6 +29,13 @@ const ContentRepeaterComponent = ({ data }) =>
             title={componentData.primary.title}
             icon={componentData.primary.icon}
             items={componentData.items}
+          />
+        );
+        break;
+      case 'skill_list':
+        component = (
+          <SkillList
+            data={componentData}
           />
         );
         break;

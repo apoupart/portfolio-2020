@@ -43,7 +43,7 @@ const HeaderBannerComponent = ({ data }) => {
               __html: wysiwygToHtmlParser(data?.description, false),
             }}
           />
-          <a href={data?.file?.url} className={style['header-banner__cv']} target="_blank" aria-label="Télécharger mon curriculum vitae">Curriculum Vitae</a>
+          <a href={data?.file?.url} className={style['header-banner__cv']} target="_blank" aria-label="Télécharger mon curriculum vitae">Voir mon Curriculum Vitae</a>
         </div>
       </div>
       <button

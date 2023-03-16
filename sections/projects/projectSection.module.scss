@@ -5,10 +5,35 @@
 .project-section {
     background-color: $darkBlue;
     padding: calculateRem(40px) 0 calculateRem(60px) 0;
+
     @include media(medium) {
         padding: calculateRem(60px) 0;
     }
+
     @include media(large) {
         padding: calculateRem(80px) 0;
     }
+
+    &__title {
+        padding: 0 calculateRem(20px);
+        width: 100%;
+        max-width: calculateRem($contentWidth);
+        margin: 40px auto 20px auto;
+        @include font-size(24px);
+        @include line-height(28px);
+
+        @include media(medium) {
+            margin-bottom: 40px;
+            @include font-size(38px);
+            @include line-height(42px);
+        }
+
+        @include media(large) {
+            margin-top: 80px;
+            margin-bottom: 60px;
+            @include font-size(48px);
+            @include line-height(54px);
+        }
+    }
+
 }

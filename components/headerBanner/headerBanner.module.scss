@@ -103,20 +103,20 @@
   &__subtitle {
     @include font-size(20px);
     @include line-height(30px);
-    margin: 0 auto;
+    margin: 0 auto 20px auto;
     font-weight: 500;
     text-shadow: 0px 0px 8px rgba($color: $black, $alpha: 0.6);
     position: relative;
     margin-bottom: 20px;
-    
+
     @include media(medium) {
       letter-spacing: 0.3px;
       @include font-size(20px);
       @include line-height(24px);
     }
-    
+
     @include media(large) {
-      margin-bottom: 24px;
+      margin-bottom: 32px;
       letter-spacing: 0.7px;
       @include font-size(48px);
       @include line-height(54px);
@@ -134,10 +134,23 @@
     border: none;
     padding: 0.75rem 1rem;
     @include font-size(14px);
+    @include line-height(18px);
     margin-right: 1rem;
     border: 2px solid $orange;
     background-color: transparent;
-    transition: background 0.1s ease-in, transform 0.25s ease-in, opacity 0.25s ease-in;
+    transition: backgroundColor 0.1s ease-in, transform 0.25s ease-in, opacity 0.25s ease-in;
+    display: inline-block;
+    
+    @include media(medium) {
+      @include font-size(17px);
+      @include line-height(21px);
+    }
+
+    @include media(large) {
+      padding: 1.15rem 2rem;
+      @include font-size(20px);
+      @include line-height(38px);
+    }
 
     &:hover,
     &:focus {

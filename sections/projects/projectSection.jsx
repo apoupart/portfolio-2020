@@ -5,6 +5,7 @@ import style from './projectSection.module.scss';
 
 const ProjectsSectionComponent = () => (
   <section className={style['project-section']} id="project">
+    <h3 className={style['project-section__title']} >Liste des projets</h3>
     <TechnologiesListComponent />
     <ProjectListComponent />
   </section>
