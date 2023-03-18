@@ -29,8 +29,6 @@ const NavigationBarComponent = ({ isHome }) => {
   }, []);
 
 
-  console.log('lastYPos', lastYPos);
-
   return (
     <nav
       className={[

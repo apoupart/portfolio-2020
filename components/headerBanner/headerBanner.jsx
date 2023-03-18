@@ -16,8 +16,6 @@ const HeaderBannerComponent = ({ data }) => {
   const [hasPassedOnScreen, setPassed] = useState(false);
   const isOnScreen = useOnScreen(elementRef);
 
-  console.log('data', data);
-
   useEffect(() => {
     if (!hasPassedOnScreen && isOnScreen) {
       setPassed(true);

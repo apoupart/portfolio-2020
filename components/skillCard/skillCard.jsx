@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { wysiwygToHtmlParser } from '../../services/utils';
 import style from './skillCard.module.scss';
@@ -19,20 +19,29 @@ const skillCard = ({ data }) => {
 
   const elementRef = useRef(null);
   const isOnScreen = useOnScreen(elementRef);
+  const [hasPassedOnScreen, setPassed] = useState(false);
+
+  useEffect(() => {
+    if (!hasPassedOnScreen && isOnScreen) {
+      setPassed(true);
+    }
+  }, [isOnScreen]);
 
   return (
     <div
-      className={`${style['skill-card']} ${isOnScreen && style['skill-card--visible']}`}
+      className={`${style['skill-card']} ${hasPassedOnScreen && style['skill-card--visible']}`}
       ref={elementRef}
     >
       <div className={style['skill-card__heading']}>
-        <Image
-          className={style['skill-card__image']}
-          width={skill_image?.dimensions?.width || 128}
-          height={skill_image?.dimensions?.height || 128}
-          src={skill_image?.url}
-          alt={skill_image?.alt}
-        />
+        {skill_image?.url && (
+          <Image
+            className={style['skill-card__image']}
+            width={skill_image?.dimensions?.width || 128}
+            height={skill_image?.dimensions?.height || 128}
+            src={skill_image?.url}
+            alt={skill_image?.alt}
+          />
+        )}
         <p className={style['skill-card__title']}>{skill_title[0]?.text}</p>
       </div>
       <div
@@ -42,18 +51,22 @@ const skillCard = ({ data }) => {
         }}
       />
       <div className={style['skill-card__footer']}>
-        <p className={style['skill-card__year']}>
-          Connaissance depuis {skill_year}
-        </p>
-        <Link
-          href={skill_url?.url || ''}
-          className={style['skill-card__link']}
-          target="_blank"
-          rel="nofollow noopener"
-          aria-label={`En apprendre d'avantage sur ${skill_title[0].text}, veuillez-noter que vous aller sortir du site`}
-        >
-          <FontAwesomeIcon className={style['skill-card__link-icon']} icon={faArrowUpRightFromSquare} aria-hidden="true" />
-        </Link>
+        {skill_year && (
+          <p className={style['skill-card__year']}>
+            Connaissance depuis {skill_year}
+          </p>
+        )}
+        {skill_url?.url && (
+          <Link
+            href={skill_url?.url || ''}
+            className={style['skill-card__link']}
+            target="_blank"
+            rel="nofollow noopener"
+            aria-label={`En apprendre d'avantage sur ${skill_title[0].text}, veuillez-noter que vous aller sortir du site`}
+          >
+            <FontAwesomeIcon className={style['skill-card__link-icon']} icon={faArrowUpRightFromSquare} aria-hidden="true" />
+          </Link>
+        )}
       </div>
     </div>
   );

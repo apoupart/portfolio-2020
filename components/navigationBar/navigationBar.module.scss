@@ -12,8 +12,11 @@
     z-index: 10;
     transform: translate(0, -100px);
     transition: all 0.25s ease-in 0.2s;
-    overflow: hidden;
-    
+
+    @include media(medium) {
+        overflow: hidden;
+    }
+
     &::before {
         top: 0;
         left: 0;
@@ -24,9 +27,13 @@
         content: "";
         @include font-size(50px);
         background-color: rgba($color: $darkBlue, $alpha: 0.9);
-        backdrop-filter: blur(10px);
+        backdrop-filter: blur(4px);
+
+        @include media(medium) {
+            backdrop-filter: blur(10px);
+        }
     }
-    
+
     &--top {
         box-shadow: none;
         padding-top: 40px;

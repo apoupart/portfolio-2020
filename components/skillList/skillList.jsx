@@ -5,10 +5,8 @@ import style from './skillList.module.scss';
 import SkillCard from '../skillCard/skillCard';
 
 const skillList = ({ data }) => {
-  console.log('data', data);
   const { title } = data.primary;
   const { items } = data;
-  console.log('items -->', items);
   
   return (
     <section className={style.skill}>

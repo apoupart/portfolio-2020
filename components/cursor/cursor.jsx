@@ -15,7 +15,7 @@ const CursorComponent = () => {
           left: `${clientX}px`,
           top: `${clientY}px`,
         },
-        { duration: 1800, fill: 'forwards' }
+        { duration: 1300, fill: 'forwards' }
       );
 
       const isNearButton = event?.target?.tagName === 'BUTTON' || event?.target?.tagName === 'A';
@@ -29,9 +29,11 @@ const CursorComponent = () => {
   return (
     <div className={style['cursor__wrapper']}>
       <div
-        className={`${style['cursor']} ${
-          style[`cursor--pressure-${pressure}`]
-        } ${nearButton && style['cursor--is-big']}`}
+        className={`
+          ${style['cursor']}
+          ${style[`cursor--pressure-${pressure}`]}
+          ${nearButton && style['cursor--is-big']}
+        `}
         ref={cursorElement}
       />
     </div>
