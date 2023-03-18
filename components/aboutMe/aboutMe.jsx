@@ -12,7 +12,7 @@ const AboutMeComponent = ({ description }) => {
   const lineNumber = lineNumberArray.map((data, index) => (
     <li key={`line-${index}`}>{index + 1}</li>
   ));
-  const content = wysiwygToHtmlParser(description, true);
+  const content = wysiwygToHtmlParser(description);
 
   useEffect(() => {
     if (!hasPassedOnScreen && isOnScreen) {

@@ -38,7 +38,7 @@ const HeaderBannerComponent = ({ data }) => {
           <h2
             className={style['header-banner__subtitle']}
             dangerouslySetInnerHTML={{
-              __html: wysiwygToHtmlParser(data?.description, false),
+              __html: wysiwygToHtmlParser(data?.description),
             }}
           />
           <a href={data?.file?.url} className={style['header-banner__cv']} target="_blank" aria-label="Télécharger mon curriculum vitae">Voir mon Curriculum Vitae</a>
