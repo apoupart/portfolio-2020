@@ -10,20 +10,27 @@
     grid-template-columns: repeat(1, 1fr);
     grid-column-gap: calculateRem(20px);
     grid-row-gap: calculateRem(20px);
+
     @include media(medium) {
         grid-template-columns: repeat(2, 1fr);
     }
+
     @include media(large) {
         grid-template-columns: repeat(3, 1fr);
     }
+
     &:has(li:hover) {
         li:not(:hover) {
             opacity: 0.3;
         }
     }
-    > li {
+
+    >li {
         opacity: 1;
+        position: relative;
         transition: opacity 0.25s ease-in;
+        overflow: hidden;
+
         &:focus,
         &:hover {
             opacity: 1;

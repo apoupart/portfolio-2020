@@ -3,15 +3,20 @@
 @import "../../assets/scss/function";
 
 .about-me {
+    margin-top: 10px;
+    $this: &;
     display: block;
     background-color: $darkBlue;
     padding: calculateRem(20px) 0;
+
     @include media(medium) {
         padding: calculateRem(60px) 0;
     }
+
     @include media(large) {
         padding: calculateRem(60px) calculateRem(20px) calculateRem(20px) calculateRem(20px);
     }
+
     &__wrapper {
         display: block;
         max-width: #{calculateRem($contentWidth - 40px)};
@@ -24,18 +29,29 @@
         border-radius: 10px;
         margin: 0 calculateRem(10px);
         border: 2px solid rgba($color: $white, $alpha: 0.5);
+        opacity: 0;
+        transform: translate(0, 200px);
+        transition: none;
+        
         @include media(medium) {
             border-radius: 15px;
             @include font-size(18px);
             padding: calculateRem(30px) calculateRem(40px);
             margin: 0 calculateRem(20px);
         }
+        
         @include media(large) {
             margin: 0 auto;
             border-radius: 20px;
             @include font-size(20px);
             border: 2px solid $white;
             padding: calculateRem(40px) calculateRem(60px);
+        }
+        
+        &--visible {
+            opacity: 1;
+            transform: translate(0, 0);
+            transition: transform 0.25s ease-in 0.15s, opacity 0.4s ease-in;
         }
     }
 
@@ -49,18 +65,16 @@
         position: relative;
         box-sizing: border-box;
         margin-bottom: calculateRem(20px);
-        transition: background 250ms ease-in;
+        transition: border 250ms ease-in 1s;
+
         @include media(medium) {
             left: -8px;
         }
-        cursor: pointer;
-        &:hover {
-            background-color: $lightGray;
-            &::before,
-            &::after {
-                background-color: $lightGray;
-            }
+        #{$this}__wrapper--visible & {
+            border-color: $yellow;
         }
+
+
         &::after,
         &::before {
             content: "";
@@ -73,10 +87,22 @@
             border-radius: 100%;
             border: 2px solid $white;
             box-sizing: border-box;
-            transition: background 250ms ease-in;
+            transition: border 250ms ease-in 1s;
         }
+
         &::after {
             left: 16px;
+            transition: border 250ms ease-in 1.25s;
+            #{$this}__wrapper--visible & {
+                border-color: $green;
+            }
+        }
+        
+        &::before {
+            transition: border 250ms ease-in 0.75s;
+            #{$this}__wrapper--visible & {
+                border-color: $red;
+            }
         }
     }
 
@@ -86,28 +112,36 @@
         position: relative;
         overflow: hidden;
         padding-left: calculateRem(30px);
+
         @include media(medium) {
             padding-left: calculateRem(50px);
         }
+
         @include media(large) {
             padding-left: calculateRem(60px);
         }
+
         p {
             padding-bottom: 21px;
+
             @include media(medium) {
                 padding-bottom: calculateRem(27px);
             }
+
             @include media(large) {
                 padding-bottom: calculateRem(30px);
             }
+
             &:last-child {
                 padding-bottom: 0;
             }
         }
+
         strong {
             color: $blue;
             font-weight: normal;
         }
+
         em {
             color: lighten($lightRed, 5);
         }

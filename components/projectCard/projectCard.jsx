@@ -1,9 +1,20 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 import style from './projectCard.module.scss';
+import { useOnScreen } from '../../hooks/useOnScreen';
 
 const ProjectCardComponent = ({ project, isLoading }) => {
+  const elementRef = useRef(null);
+  const isOnScreen = useOnScreen(elementRef);
+  const [hasPassedOnScreen, setPassed] = useState(false);
+
+  useEffect(() => {
+    if (!hasPassedOnScreen && isOnScreen) {
+      setPassed(true);
+    }
+  }, [isOnScreen]);
+
   if (isLoading) {
     return (
       <div
@@ -25,8 +36,10 @@ const ProjectCardComponent = ({ project, isLoading }) => {
         className={[
           style['project-card'],
           style[`project-card--tech-${project.data.slug || 'MISSING-SLUG'}`],
+          hasPassedOnScreen && style[`project-card--visible`],
         ].join(' ')}
         type="button"
+        ref={elementRef}
         data-technology={project.data.relatedTechnologies[0]?.technology?.uid}
       >
         <div className={style['project-card__padding']} />

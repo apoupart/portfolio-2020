@@ -9,7 +9,6 @@ const ProjectListComponent = () => {
 
   return (
     <>
-      <h3 className="visually-hidden">Liste des projets</h3>
       <ul className={style['projects-list']}>
         {projects &&
           projects.length &&

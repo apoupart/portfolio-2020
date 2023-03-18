@@ -1,0 +1,53 @@
+@import "../../assets/scss/variable";
+@import "../../assets/scss/mixins";
+@import "../../assets/scss/function";
+
+.skill {
+  $this: &;
+  position: relative;
+
+  &__title {
+    margin-top: 40px;
+    margin-bottom: 20px;
+    @include font-size(24px);
+    @include line-height(28px);
+    
+    @include media(medium) {
+      margin-bottom: 40px;
+      @include font-size(38px);
+      @include line-height(42px);
+    }
+    
+    @include media(large) {
+      margin-top: 80px;
+      margin-bottom: 60px;
+      @include font-size(48px);
+      @include line-height(54px);
+    }
+  }
+
+  &__inner {
+    margin: 0 auto;
+    padding: 0 calculateRem(20px);
+    width: 100%;
+    max-width: calculateRem($contentWidth);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  &__list {
+    position: relative;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(1, 1fr);
+    margin-bottom: 40px;
+    @include media(medium) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @include media(large) {
+      grid-template-columns: repeat(3, 1fr);
+      margin-bottom: 120px;
+    }
+  }
+}

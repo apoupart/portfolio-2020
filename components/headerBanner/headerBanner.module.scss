@@ -4,87 +4,158 @@
 
 .header-banner {
   width: 100%;
-  height: calc(100vh - 52px);
+  height: 100vh;
+  height: 100dvh;
   min-height: -webkit-fill-available;
   position: relative;
   display: block;
   color: $white;
+
   @include media(large) {
     min-height: initial;
-    height: 100vh;
   }
 
   &__content {
     display: block;
     width: 100%;
     margin: 0 auto;
-    top: 60%;
     position: absolute;
     z-index: 1;
-}
+    top: 50dvh;
+    translate: 0 -100%;
 
-&__title-section {
-    background-color: rgba($color: $darkGray, $alpha: 0.6);
-    padding: 24px 0;
-}
+    @include media(large) {
+      top: 80dvh;
+    }
+  }
 
-&__title {
-    text-align: center;
+  &__title-section {
+    padding: 24px 20px;
+    max-width: calculateRem($contentWidth);
+    margin: 0 auto;
+
+
+    >* {
+      transform: translate(0, 40%);
+      transition: all 0.25s ease-in-out 0.5s;
+      opacity: 0;
+    }
+
+    &--visible {
+      >* {
+        opacity: 1;
+        transform: translate(0, 0%);
+
+        @for $i from 1 through 10 {
+          &:nth-child(1n + #{$i}) {
+            transition-delay: #{0.5 * $i + 0.5}s;
+          }
+        }
+      }
+    }
+  }
+
+  &__surtitle {
+    @include font-size(16px);
+    @include line-height(20px);
+    margin-bottom: 8px;
+    color: $lightGray;
+
+    @include media(medium) {
+      @include font-size(24px);
+      @include line-height(28px);
+      margin-bottom: 12px;
+    }
+
+    @include media(large) {
+      @include font-size(28px);
+      @include line-height(30px);
+    }
+  }
+
+  &__title {
     @include font-size(28px);
     @include line-height(30px);
     letter-spacing: 0.3px;
-    max-width: calculateRem($contentWidth);
-    padding: 0 20px;
-    margin: 0 auto;
+    margin-bottom: 4px;
     text-shadow: 0px 0px 8px rgba($color: $black, $alpha: 0.6);
+    font-weight: 700;
     position: relative;
-    animation: fadeIn 2s;
+    overflow: hidden;
+
     @include media(small) {
       @include font-size(34px);
       @include line-height(32px);
     }
+
     @include media(medium) {
       @include font-size(42px);
       @include line-height(46px);
     }
+
     @include media(large) {
-      @include font-size(56px);
-      @include line-height(58px);
+      @include font-size(100px);
+      @include line-height(120px);
     }
   }
-&__subtitle {
-    text-align: center;
-    @include font-size(14px);
-    @include line-height(20px);
-    max-width: calculateRem($contentWidth);
-    padding: 0 calculateRem(20px);
-    margin: 0 auto;
+
+
+  &__subtitle {
+    @include font-size(20px);
+    @include line-height(30px);
+    margin: 0 auto 20px auto;
+    font-weight: 500;
     text-shadow: 0px 0px 8px rgba($color: $black, $alpha: 0.6);
     position: relative;
-    animation: fadeIn 2s;
-    @include media(small) {
-      letter-spacing: 0.4px;
-      @include font-size(16px);
-      @include line-height(22px);
-    }
+    margin-bottom: 20px;
+
     @include media(medium) {
       letter-spacing: 0.3px;
       @include font-size(20px);
       @include line-height(24px);
     }
+
     @include media(large) {
+      margin-bottom: 32px;
       letter-spacing: 0.7px;
-      @include font-size(26px);
-      @include line-height(32px);
+      @include font-size(48px);
+      @include line-height(54px);
     }
+
     span {
-        color: $orange;
+      color: $orange;
     }
   }
 
-  &__background {
-    width: 100%;
-    height: 100%;
+  &__cv {
+    color: $white;
+    border-radius: 4px;
+    box-shadow: 0 0 4px $black;
+    border: none;
+    padding: 0.75rem 1rem;
+    @include font-size(14px);
+    @include line-height(18px);
+    margin-right: 1rem;
+    border: 2px solid $orange;
+    background-color: transparent;
+    transition: backgroundColor 0.1s ease-in, transform 0.25s ease-in, opacity 0.25s ease-in;
+    display: inline-block;
+    
+    @include media(medium) {
+      @include font-size(17px);
+      @include line-height(21px);
+    }
+
+    @include media(large) {
+      padding: 1.15rem 2rem;
+      @include font-size(20px);
+      @include line-height(38px);
+    }
+
+    &:hover,
+    &:focus {
+      background-color: rgba($color: $orange, $alpha: 0.3);
+    }
   }
 
   &__button-icon-down {
@@ -96,9 +167,10 @@
     height: 55px;
     font-size: 3rem;
     background-color: transparent;
-    border: none; 
+    border: none;
     z-index: 1;
   }
+
   &__icon-down {
     color: $white;
     position: relative;
@@ -107,24 +179,12 @@
     animation-fill-mode: both;
     animation-duration: 2s;
     animation-name: bounce;
-  }
-}
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-    left: -80px;
-  }
-  40% {
-    opacity: 0.7;
-  }
-  100% {
-    opacity: 1;
-    left: 0;
+    pointer-events: none;
   }
 }
 
 @keyframes bounce {
+
   0%,
   20%,
   50%,
@@ -132,9 +192,11 @@
   100% {
     transform: translate(0, 0);
   }
+
   40% {
     transform: translate(0, -25px);
   }
+
   60% {
     transform: translate(0, -10px);
   }
