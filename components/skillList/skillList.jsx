@@ -9,7 +9,7 @@ const skillList = ({ data }) => {
   const { items } = data;
   
   return (
-    <section className={style.skill}>
+    <section className={style.skill} id="skill">
       <div className={style.skill__inner}>
         <p className={style.skill__title}>{title[0]?.text}</p>
         <ul className={style.skill__list}>

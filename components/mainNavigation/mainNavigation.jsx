@@ -26,8 +26,8 @@ const MainNavigationComponent = () => {
       slug: 'project',
     },
     {
-      label: 'Connaissances',
-      slug: 'knowledge',
+      label: 'Compétences',
+      slug: 'skill',
     },
   ];
 
